@@ -46,7 +46,9 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: [amplify:CreateDeployment, amplify:StartDeployment]
-                Resource: !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging
+                Resource:
+                  - !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging
+                  - !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging/deployments/*
               - Effect: Allow
                 Action: amplify:GetJob
                 Resource: !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging/jobs/*
