@@ -31,6 +31,10 @@ git push -u origin main
 
 GitHub stores the source. The public staging website is deployed through AWS Amplify.
 
+## Automatic staging updates
+
+After the AWS role in `aws-github-staging.yml` is deployed, pushes to `main` run **Deploy AWS staging** in GitHub Actions. The workflow builds the site, preserves the staging contact endpoint, deploys to the existing Amplify `staging` branch, and waits for AWS to report success. The role uses temporary GitHub OIDC credentials scoped to that repository and branch.
+
 ## Build for existing AWS staging
 
 ```powershell

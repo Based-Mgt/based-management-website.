@@ -1,0 +1,79 @@
+name: Deploy AWS staging
+
+# Deploy only the main branch of the Based Management repository.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Let one deployment finish before starting the next one.
+concurrency:
+  group: amplify-staging
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    if: github.repository == 'Based-Mgt/based-management-website.' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      AWS_REGION: us-east-1
+      AWS_PAGER: ''
+      AMPLIFY_APP_ID: d2mjg3wk4ht5pg
+      AMPLIFY_BRANCH: staging
+      BASED_CONTACT_ENDPOINT: https://iru7l2fawl.execute-api.us-east-1.amazonaws.com/api/contact
+
+    steps:
+      # Check out the commit that started this run.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      # Use the same Node release line as the local staging build.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Build and package staging
+        run: |
+          npm ci
+          npm run build
+          # Keep staging out of search results and verify the working form endpoint survives the build.
+          sed -i 's/<head>/<head><meta name="robots" content="noindex, nofollow">/' dist/index.html
+          grep -Fq 'content="noindex, nofollow"' dist/index.html
+          grep -Fq "action=\"$BASED_CONTACT_ENDPOINT\"" dist/index.html
+          cp _headers dist/
+          (cd dist && zip -qr "$RUNNER_TEMP/staging.zip" .)
+
+      # Get temporary AWS credentials for this run through GitHub OIDC.
+      - uses: aws-actions/configure-aws-credentials@ff717079ee2060e4bcee96c4779b553acc87447c # v4
+        with:
+          role-to-assume: arn:aws:iam::195392775693:role/BasedManagementGitHubStagingDeploy
+          aws-region: us-east-1
+
+      - name: Upload the ZIP and verify the Amplify job
+        run: |
+          # Amplify returns a job ID and a short-lived URL for this ZIP.
+          deployment=$(aws amplify create-deployment --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH")
+          job_id=$(jq -er .jobId <<< "$deployment")
+          upload_url=$(jq -er .zipUploadUrl <<< "$deployment")
+          echo "::add-mask::$upload_url"
+          curl --fail --silent --show-error --upload-file "$RUNNER_TEMP/staging.zip" "$upload_url"
+          aws amplify start-deployment --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH" --job-id "$job_id" >/dev/null
+
+          # Wait for Amplify so a failed deployment fails the GitHub run too.
+          for attempt in {1..60}; do
+            status=$(aws amplify get-job --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH" --job-id "$job_id" --query job.summary.status --output text)
+            case "$status" in
+              SUCCEED) exit 0 ;;
+              FAILED|CANCELLED) echo "Amplify deployment ended with $status."; exit 1 ;;
+              *) sleep 10 ;;
+            esac
+          done
+          echo 'Amplify did not finish within ten minutes.'
+          exit 1

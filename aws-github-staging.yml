@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Allow the Based Management GitHub main branch to deploy only to Amplify staging
+
+Parameters:
+  CreateGitHubProvider:
+    Type: String
+    Default: 'true'
+    AllowedValues: ['true', 'false']
+    Description: Set to false if this AWS account already has the GitHub Actions OIDC provider.
+
+Conditions:
+  NeedsGitHubProvider: !Equals [!Ref CreateGitHubProvider, 'true']
+
+Resources:
+  # Register GitHub as an identity provider only if the account has no existing registration.
+  GitHubProvider:
+    Type: AWS::IAM::OIDCProvider
+    Condition: NeedsGitHubProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList: [sts.amazonaws.com]
+
+  # This role grants temporary deployment access to one repository and one branch.
+  StagingDeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: BasedManagementGitHubStagingDeploy
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !If
+                - NeedsGitHubProvider
+                - !Ref GitHubProvider
+                - !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                token.actions.githubusercontent.com:sub: 'repo:Based-Mgt/based-management-website.:ref:refs/heads/main'
+      Policies:
+        - PolicyName: DeployOnlyToAmplifyStaging
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [amplify:CreateDeployment, amplify:StartDeployment]
+                Resource: !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging
+              - Effect: Allow
+                Action: amplify:GetJob
+                Resource: !Sub arn:${AWS::Partition}:amplify:us-east-1:${AWS::AccountId}:apps/d2mjg3wk4ht5pg/branches/staging/jobs/*
