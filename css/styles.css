@@ -1,0 +1,896 @@
+/* --------------------------------------------------------------------------
+   BASED MANAGEMENT WEBSITE
+   This stylesheet is intentionally split into clearly labeled sections so a
+   future editor can find a visual area quickly without learning a framework.
+   -------------------------------------------------------------------------- */
+
+/* Design tokens: change these values first if the brand colors or spacing ever change. */
+/* Design tokens: change these values first if the brand colors or spacing ever change. */
+:root {
+  /* Save #07111f as the reusable navy 950 value. */
+  --navy-950: #07111f;
+  /* Save #0f172a as the reusable navy 900 value. */
+  --navy-900: #0f172a;
+  /* Save #17223a as the reusable navy 800 value. */
+  --navy-800: #17223a;
+  /* Save #2563eb as the reusable blue 600 value. */
+  --blue-600: #2563eb;
+  /* Save #3b82f6 as the reusable blue 500 value. */
+  --blue-500: #3b82f6;
+  /* Save #dbeafe as the reusable blue 100 value. */
+  --blue-100: #dbeafe;
+  /* Save #334155 as the reusable slate 700 value. */
+  --slate-700: #334155;
+  /* Save #475569 as the reusable slate 600 value. */
+  --slate-600: #475569;
+  /* Save #64748b as the reusable slate 500 value. */
+  --slate-500: #64748b;
+  /* Save #cbd5e1 as the reusable slate 300 value. */
+  --slate-300: #cbd5e1;
+  /* Save #e2e8f0 as the reusable slate 200 value. */
+  --slate-200: #e2e8f0;
+  /* Save #f1f5f9 as the reusable slate 100 value. */
+  --slate-100: #f1f5f9;
+  /* Save #f8fafc as the reusable slate 50 value. */
+  --slate-50: #f8fafc;
+  /* Save #ffffff as the reusable white value. */
+  --white: #ffffff;
+  /* Save #fbbf24 as the reusable amber 400 value. */
+  --amber-400: #fbbf24;
+  /* Save 0 10px 30px rgba(15, 23, 42, 0.08) as the reusable shadow sm value. */
+  --shadow-sm: 0 10px 30px rgba(15, 23, 42, 0.08);
+  /* Save 0 24px 60px rgba(2, 6, 23, 0.18) as the reusable shadow lg value. */
+  --shadow-lg: 0 24px 60px rgba(2, 6, 23, 0.18);
+  /* Save 12px as the reusable radius sm value. */
+  --radius-sm: 12px;
+  /* Save 20px as the reusable radius md value. */
+  --radius-md: 20px;
+  /* Save 30px as the reusable radius lg value. */
+  --radius-lg: 30px;
+  /* Save 1180px as the reusable container value. */
+  --container: 1180px;
+/* Close the style rule above. */
+}
+
+/* Global reset: removes browser inconsistencies while keeping semantic HTML intact. */
+/* Global reset: removes browser inconsistencies while keeping semantic HTML intact. */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Smooth anchor scrolling makes the single-page navigation feel intentional. */
+/* Smooth anchor scrolling makes the single-page navigation feel intentional. */
+html { scroll-behavior: smooth; }
+
+/* Main body styling: system fonts keep load time fast and avoid an external font dependency. */
+/* Main body styling: system fonts keep load time fast and avoid an external font dependency. */
+body {
+  /* Set the space outside the element to 0. */
+  margin: 0;
+  /* Set the text color to var(--navy-900). */
+  color: var(--navy-900);
+  /* Set the background to var(--white). */
+  background: var(--white);
+  /* Choose the font stack to Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif. */
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Set the spacing between text lines to 1.6. */
+  line-height: 1.6;
+  /* Set text rendering to optimizeLegibility. */
+  text-rendering: optimizeLegibility;
+  /* Set  webkit font smoothing to antialiased. */
+  -webkit-font-smoothing: antialiased;
+/* Close the style rule above. */
+}
+
+/* Media defaults: images never overflow their layout boxes. */
+/* Media defaults: images never overflow their layout boxes. */
+img { display: block; max-width: 100%; }
+
+/* Link defaults: individual components add their own visible treatment. */
+/* Link defaults: individual components add their own visible treatment. */
+a { color: inherit; text-decoration: none; }
+
+/* Button defaults: native buttons inherit the site font and remain accessible. */
+/* Button defaults: native buttons inherit the site font and remain accessible. */
+button { font: inherit; }
+
+/* Shared container: centers every major section and limits line lengths on wide screens. */
+/* Shared container: centers every major section and limits line lengths on wide screens. */
+.container { width: min(calc(100% - 40px), var(--container)); margin-inline: auto; }
+
+/* Accessibility skip link: hidden until keyboard focus reaches it. */
+/* Accessibility skip link: hidden until keyboard focus reaches it. */
+.skip-link {
+  /* Choose how the element is positioned to fixed. */
+  position: fixed;
+  /* Set top to 12px. */
+  top: 12px;
+  /* Set left to 12px. */
+  left: 12px;
+  /* Set its stacking order to 9999. */
+  z-index: 9999;
+  /* Set transform to translateY(-150%). */
+  transform: translateY(-150%);
+  /* Set the space inside the element to 10px 14px. */
+  padding: 10px 14px;
+  /* Round the corners to 8px. */
+  border-radius: 8px;
+  /* Set the background to var(--white). */
+  background: var(--white);
+  /* Set the text color to var(--navy-900). */
+  color: var(--navy-900);
+  /* Add depth with a shadow to var(--shadow-sm). */
+  box-shadow: var(--shadow-sm);
+/* Close the style rule above. */
+}
+
+/* Accessibility skip link focus state: brings the shortcut onscreen only when it is useful. */
+/* Accessibility skip link focus state: brings the shortcut onscreen only when it is useful. */
+.skip-link:focus { transform: translateY(0); }
+
+/* Shared eyebrow text: small uppercase labels provide structure above major headings. */
+/* Shared eyebrow text: small uppercase labels provide structure above major headings. */
+.eyebrow {
+  /* Set the space outside the element to 0 0 14px. */
+  margin: 0 0 14px;
+  /* Set the text color to var(--blue-600). */
+  color: var(--blue-600);
+  /* Set the text size to 0.78rem. */
+  font-size: 0.78rem;
+  /* Set the text weight to 800. */
+  font-weight: 800;
+  /* Set letter spacing to 0.13em. */
+  letter-spacing: 0.13em;
+  /* Set text transform to uppercase. */
+  text-transform: uppercase;
+/* Close the style rule above. */
+}
+
+/* Light eyebrow variant: used when the surrounding section has a dark background. */
+/* Light eyebrow variant: used when the surrounding section has a dark background. */
+.eyebrow-light { color: #93c5fd; }
+
+/* Shared heading rhythm: large headings stay compact and readable instead of stretching too wide. */
+/* Shared heading rhythm: large headings stay compact and readable instead of stretching too wide. */
+h1, h2, h3 { margin-top: 0; line-height: 1.08; letter-spacing: -0.035em; }
+
+/* Site header shell: remains visible while scrolling and gains a shadow after leaving the top. */
+/* Site header shell: remains visible while scrolling and gains a shadow after leaving the top. */
+.site-header {
+  /* Choose how the element is positioned to sticky. */
+  position: sticky;
+  /* Set top to 0. */
+  top: 0;
+  /* Set its stacking order to 1000. */
+  z-index: 1000;
+  /* Set the background to rgba(255, 255, 255, 0.92). */
+  background: rgba(255, 255, 255, 0.92);
+  /* Set border bottom to 1px solid rgba(226, 232, 240, 0.85). */
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  /* Set backdrop filter to blur(16px). */
+  backdrop-filter: blur(16px);
+  /* Smooth changes to the listed properties to box-shadow 180ms ease, background 180ms ease. */
+  transition: box-shadow 180ms ease, background 180ms ease;
+/* Close the style rule above. */
+}
+
+/* Scrolled header state: JavaScript adds this class after a short scroll distance. */
+/* Scrolled header state: JavaScript adds this class after a short scroll distance. */
+.site-header.is-scrolled { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08); }
+
+/* Navigation layout: aligns the logo, section links, and action buttons on one row. */
+/* Navigation layout: aligns the logo, section links, and action buttons on one row. */
+.nav-wrap { min-height: 80px; display: flex; align-items: center; gap: 28px; }
+
+/* Brand layout: groups the house icon with the company name and location. */
+/* Brand layout: groups the house icon with the company name and location. */
+.brand { display: inline-flex; align-items: center; gap: 12px; min-width: max-content; }
+
+/* Brand icon container: the dark rounded tile gives the simple house mark a more finished look. */
+/* Brand icon container: the dark rounded tile gives the simple house mark a more finished look. */
+.brand-mark {
+  /* Set the element width to 42px. */
+  width: 42px;
+  /* Set the element height to 42px. */
+  height: 42px;
+  /* Choose how the element lays out to grid. */
+  display: grid;
+  /* Set place items to center. */
+  place-items: center;
+  /* Round the corners to 12px. */
+  border-radius: 12px;
+  /* Set the background to var(--navy-900). */
+  background: var(--navy-900);
+  /* Add depth with a shadow to 0 8px 18px rgba(15, 23, 42, 0.18). */
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+/* Close the style rule above. */
+}
+
+/* Brand SVG: fills the icon with white while leaving the door blue for a small accent. */
+/* Brand SVG: fills the icon with white while leaving the door blue for a small accent. */
+.brand-mark svg { width: 25px; height: 25px; fill: var(--white); }
+
+/* Brand door accent: gives the house mark a subtle visual signature. */
+/* Brand door accent: gives the house mark a subtle visual signature. */
+.brand-mark .brand-door { fill: var(--blue-500); }
+
+/* Brand text stack: keeps the business name stronger than the geographic subtitle. */
+/* Brand text stack: keeps the business name stronger than the geographic subtitle. */
+.brand-copy { display: grid; gap: 1px; line-height: 1.15; }
+
+/* Company name styling: slightly tighter tracking feels more like a wordmark. */
+/* Company name styling: slightly tighter tracking feels more like a wordmark. */
+.brand-copy strong { font-size: 1.03rem; letter-spacing: -0.02em; }
+
+/* Company location styling: secondary copy stays quiet and does not compete with the name. */
+/* Company location styling: secondary copy stays quiet and does not compete with the name. */
+.brand-copy small { color: var(--slate-500); font-size: 0.72rem; }
+
+/* Desktop section navigation: sits in the center and uses understated text links. */
+/* Desktop section navigation: sits in the center and uses understated text links. */
+.desktop-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+
+/* Desktop navigation links: a little weight and muted color keeps the header polished. */
+/* Desktop navigation links: a little weight and muted color keeps the header polished. */
+.desktop-nav a { color: var(--slate-600); font-size: 0.92rem; font-weight: 700; }
+
+/* Desktop navigation hover state: blue signals interactivity without a heavy button treatment. */
+/* Desktop navigation hover state: blue signals interactivity without a heavy button treatment. */
+.desktop-nav a:hover { color: var(--blue-600); }
+
+/* Navigation actions: keep all portal/listing buttons aligned and evenly spaced. */
+/* Navigation actions: keep all portal/listing buttons aligned and evenly spaced. */
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* Shared button base: all primary actions use the same geometry and focus behavior. */
+/* Shared button base: all primary actions use the same geometry and focus behavior. */
+.button {
+  /* Set min height to 42px. */
+  min-height: 42px;
+  /* Choose how the element lays out to inline-flex. */
+  display: inline-flex;
+  /* Set align items to center. */
+  align-items: center;
+  /* Set justify content to center. */
+  justify-content: center;
+  /* Set the space between items to 8px. */
+  gap: 8px;
+  /* Set the space inside the element to 0 17px. */
+  padding: 0 17px;
+  /* Draw the edge of the element to 1px solid transparent. */
+  border: 1px solid transparent;
+  /* Round the corners to 999px. */
+  border-radius: 999px;
+  /* Set cursor to pointer. */
+  cursor: pointer;
+  /* Set the text size to 0.88rem. */
+  font-size: 0.88rem;
+  /* Set the text weight to 800. */
+  font-weight: 800;
+  /* Set the spacing between text lines to 1. */
+  line-height: 1;
+  /* Smooth changes to the listed properties to transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease. */
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+/* Close the style rule above. */
+}
+
+/* Shared button hover motion: a one-pixel lift gives feedback without looking animated for animation's sake. */
+/* Shared button hover motion: a one-pixel lift gives feedback without looking animated for animation's sake. */
+.button:hover { transform: translateY(-1px); }
+
+/* Shared button focus ring: visible keyboard focus meets accessibility expectations. */
+/* Shared button focus ring: visible keyboard focus meets accessibility expectations. */
+.button:focus-visible, .menu-button:focus-visible, .gallery-item:focus-visible, .lightbox-close:focus-visible {
+  /* Set outline to 3px solid rgba(59, 130, 246, 0.35). */
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  /* Set outline offset to 3px. */
+  outline-offset: 3px;
+/* Close the style rule above. */
+}
+
+/* Primary button: the blue action is reserved for the most important next step. */
+/* Primary button: the blue action is reserved for the most important next step. */
+.button-primary { background: var(--blue-600); color: var(--white); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22); }
+
+/* Primary button hover state: slightly darker blue improves perceived depth. */
+/* Primary button hover state: slightly darker blue improves perceived depth. */
+.button-primary:hover { background: #1d4ed8; }
+
+/* Ghost button: used in the header where a lighter visual weight is appropriate. */
+/* Ghost button: used in the header where a lighter visual weight is appropriate. */
+.button-ghost { background: var(--slate-100); color: var(--navy-900); }
+
+/* Ghost button hover state: subtle background darkening gives clear feedback. */
+/* Ghost button hover state: subtle background darkening gives clear feedback. */
+.button-ghost:hover { background: var(--slate-200); }
+
+/* Outline button: transparent style works well next to a filled primary action. */
+/* Outline button: transparent style works well next to a filled primary action. */
+.button-outline { border-color: var(--slate-300); background: transparent; color: var(--navy-900); }
+
+/* Outline button hover state: white fill keeps the edge crisp on light section backgrounds. */
+/* Outline button hover state: white fill keeps the edge crisp on light section backgrounds. */
+.button-outline:hover { border-color: var(--slate-500); background: var(--white); }
+
+/* Light button: white action used on navy backgrounds. */
+/* Light button: white action used on navy backgrounds. */
+.button-light { background: var(--white); color: var(--navy-900); }
+
+/* Light button hover state: a pale blue tint keeps the dark-section CTA feeling connected to the brand. */
+/* Light button hover state: a pale blue tint keeps the dark-section CTA feeling connected to the brand. */
+.button-light:hover { background: var(--blue-100); }
+
+/* Light outline button: secondary action that remains readable on a dark contact section. */
+/* Light outline button: secondary action that remains readable on a dark contact section. */
+.button-outline-light { border-color: rgba(255,255,255,0.45); color: var(--white); background: transparent; }
+
+/* Light outline hover state: soft white overlay creates contrast without becoming a full primary button. */
+/* Light outline hover state: soft white overlay creates contrast without becoming a full primary button. */
+.button-outline-light:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.75); }
+
+/* Large button size: used only where CTAs need extra presence in the hero and contact sections. */
+/* Large button size: used only where CTAs need extra presence in the hero and contact sections. */
+.button-large { min-height: 50px; padding-inline: 22px; font-size: 0.94rem; }
+
+/* Mobile menu button: hidden on desktop and shown by the responsive rules near the bottom. */
+/* Mobile menu button: hidden on desktop and shown by the responsive rules near the bottom. */
+.menu-button { display: none; width: 44px; height: 44px; padding: 9px; border: 0; border-radius: 11px; background: var(--navy-900); cursor: pointer; }
+
+/* Mobile menu lines: three simple bars form the hamburger icon without an icon package. */
+/* Mobile menu lines: three simple bars form the hamburger icon without an icon package. */
+.menu-button span { display: block; width: 100%; height: 2px; margin: 4px 0; border-radius: 2px; background: var(--white); transition: transform 180ms ease, opacity 180ms ease; }
+
+/* Open mobile menu first bar: rotates into the top half of an X. */
+/* Open mobile menu first bar: rotates into the top half of an X. */
+.menu-button[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+
+/* Open mobile menu middle bar: disappears so the other two bars form a clean X. */
+/* Open mobile menu middle bar: disappears so the other two bars form a clean X. */
+.menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+
+/* Open mobile menu third bar: rotates into the bottom half of an X. */
+/* Open mobile menu third bar: rotates into the bottom half of an X. */
+.menu-button[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile menu panel: a compact drop-down below the sticky header. */
+/* Mobile menu panel: a compact drop-down below the sticky header. */
+.mobile-menu { border-top: 1px solid var(--slate-200); background: var(--white); box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08); }
+
+/* Mobile menu inner layout: vertical links are easier to tap with a thumb. */
+/* Mobile menu inner layout: vertical links are easier to tap with a thumb. */
+.mobile-menu-inner { display: grid; gap: 6px; padding-top: 14px; padding-bottom: 22px; }
+
+/* Mobile text links: larger hit targets help usability on phones. */
+/* Mobile text links: larger hit targets help usability on phones. */
+.mobile-menu-inner > a { padding: 10px 2px; color: var(--slate-700); font-weight: 750; }
+
+/* Mobile action grid: stacks the three key external destinations beneath regular page links. */
+/* Mobile action grid: stacks the three key external destinations beneath regular page links. */
+.mobile-action-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+
+/* Hero section background: a very soft gradient adds depth while staying professional. */
+/* Hero section background: a very soft gradient adds depth while staying professional. */
+.hero {
+  /* Set overflow to hidden. */
+  overflow: hidden;
+  /* Set the background to . */
+  background:
+    /* Continue the style values in the rule above. */
+    radial-gradient(circle at 12% 10%, rgba(59, 130, 246, 0.11), transparent 34%),
+    /* Continue the style values in the rule above. */
+    linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
+/* Close the style rule above. */
+}
+
+/* Hero layout: text and imagery sit side by side on large screens. */
+/* Hero layout: text and imagery sit side by side on large screens. */
+.hero-grid { min-height: 680px; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 62px; padding-top: 72px; padding-bottom: 84px; }
+
+/* Hero copy width: prevents the headline from becoming too long on ultrawide monitors. */
+/* Hero copy width: prevents the headline from becoming too long on ultrawide monitors. */
+.hero-copy { max-width: 610px; }
+
+/* Hero headline: strong but not oversized enough to feel like a tech startup template. */
+/* Hero headline: strong but not oversized enough to feel like a tech startup template. */
+.hero h1 { margin-bottom: 24px; max-width: 11ch; font-size: clamp(3.2rem, 6vw, 5.9rem); font-weight: 850; }
+
+/* Hero paragraph: larger than body text so it reads as the primary introduction. */
+/* Hero paragraph: larger than body text so it reads as the primary introduction. */
+.hero-lede { margin: 0; max-width: 58ch; color: var(--slate-600); font-size: clamp(1.06rem, 1.5vw, 1.22rem); }
+
+/* Hero buttons: wrap naturally on smaller widths without breaking the layout. */
+/* Hero buttons: wrap naturally on smaller widths without breaking the layout. */
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+
+/* Hero direct contact row: keeps phone and email available to visitors who want a person immediately. */
+/* Hero direct contact row: keeps phone and email available to visitors who want a person immediately. */
+.hero-contact { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 28px; }
+
+/* Hero contact links: quieter than the main CTAs but still clearly clickable. */
+/* Hero contact links: quieter than the main CTAs but still clearly clickable. */
+.hero-contact a { color: var(--slate-600); font-size: 0.9rem; font-weight: 700; }
+
+/* Hero contact hover state: uses brand blue for consistency with the rest of the site. */
+/* Hero contact hover state: uses brand blue for consistency with the rest of the site. */
+.hero-contact a:hover { color: var(--blue-600); }
+
+/* Hero image itself: fixed aspect ratio prevents layout shift while the image loads. */
+/* Hero image itself: fixed aspect ratio prevents layout shift while the image loads. */
+.hero-media > img { width: 100%; height: auto; aspect-ratio: 1.2 / 1; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+
+/* Trust strip background: dark band separates the hero from the detailed content below. */
+/* Trust strip background: dark band separates the hero from the detailed content below. */
+.trust-strip { background: var(--navy-900); color: var(--white); }
+
+/* Trust strip grid: three equal service promises form a clean visual rhythm. */
+/* Trust strip grid: three equal service promises form a clean visual rhythm. */
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+/* Individual trust item: border creates separation without individual floating cards. */
+/* Individual trust item: border creates separation without individual floating cards. */
+.trust-item { display: grid; grid-template-columns: auto 1fr; gap: 18px; padding: 34px 30px; border-right: 1px solid rgba(255,255,255,0.12); }
+
+/* Last trust item: removes the outer border so the band ends cleanly. */
+/* Last trust item: removes the outer border so the band ends cleanly. */
+.trust-item:last-child { border-right: 0; }
+
+/* Trust number: small blue index gives the section subtle visual identity. */
+/* Trust number: small blue index gives the section subtle visual identity. */
+.trust-number { color: #93c5fd; font-size: 0.8rem; font-weight: 850; letter-spacing: 0.12em; }
+
+/* Trust heading: compact title stays legible in the dense horizontal strip. */
+/* Trust heading: compact title stays legible in the dense horizontal strip. */
+.trust-item h2 { margin-bottom: 7px; font-size: 1rem; letter-spacing: -0.02em; }
+
+/* Trust paragraph: lower contrast prevents secondary details from overwhelming the title. */
+/* Trust paragraph: lower contrast prevents secondary details from overwhelming the title. */
+.trust-item p { margin: 0; color: #cbd5e1; font-size: 0.86rem; line-height: 1.55; }
+
+/* Shared section spacing: gives major content areas consistent breathing room. */
+/* Shared section spacing: gives major content areas consistent breathing room. */
+.section { padding: 110px 0; }
+
+/* Light section background: separates content groups while preserving a clean white-forward design. */
+/* Light section background: separates content groups while preserving a clean white-forward design. */
+.section-light { background: var(--slate-50); }
+
+/* Section heading block: caps text width for easier reading and better hierarchy. */
+/* Section heading block: caps text width for easier reading and better hierarchy. */
+.section-heading { max-width: 770px; margin-bottom: 50px; }
+
+/* Section heading title: scales smoothly across screen sizes. */
+/* Section heading title: scales smoothly across screen sizes. */
+.section-heading h2, .reviews-header h2, .contact-copy h2 { margin-bottom: 18px; font-size: clamp(2.4rem, 4vw, 4.1rem); }
+
+/* Section heading paragraph: muted supporting copy balances larger headings. */
+/* Section heading paragraph: muted supporting copy balances larger headings. */
+.section-heading > p:last-child { margin: 0; color: var(--slate-600); font-size: 1.06rem; }
+
+/* Rental cards grid: two clear choices make the primary services easy to understand. */
+/* Rental cards grid: two clear choices make the primary services easy to understand. */
+.rental-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+
+/* Rental card shell: image and copy share one elevated container. */
+/* Rental card shell: image and copy share one elevated container. */
+.rental-card { overflow: hidden; border: 1px solid var(--slate-200); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow-sm); }
+
+/* Dark rental card variant: creates visual contrast for short-term rentals. */
+/* Dark rental card variant: creates visual contrast for short-term rentals. */
+.rental-card-dark { border-color: var(--navy-800); background: var(--navy-900); color: var(--white); }
+
+/* Rental card image frame: consistent ratio makes the paired cards align perfectly. */
+/* Rental card image frame: consistent ratio makes the paired cards align perfectly. */
+.rental-card-image { aspect-ratio: 16 / 9; overflow: hidden; }
+
+/* Rental card image: gentle zoom on hover adds polish without a slider or animation library. */
+/* Rental card image: gentle zoom on hover adds polish without a slider or animation library. */
+.rental-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
+
+/* Rental card image hover state: only a small scale change so photos do not feel distracting. */
+/* Rental card image hover state: only a small scale change so photos do not feel distracting. */
+.rental-card:hover .rental-card-image img { transform: scale(1.025); }
+
+/* Rental card text area: generous padding makes the cards feel less like listing tiles. */
+/* Rental card text area: generous padding makes the cards feel less like listing tiles. */
+.rental-card-body { padding: 34px 36px 38px; }
+/* Set layout or appearance for .rental-card-body .photo-credit. */
+.rental-card-body .photo-credit { margin: 12px 0 0; font-size: 0.75rem; }
+/* Set layout or appearance for .photo-credit a. */
+.photo-credit a { text-decoration: underline; }
+
+/* Rental card category label: small uppercase title helps distinguish the two services. */
+/* Rental card category label: small uppercase title helps distinguish the two services. */
+.card-kicker { margin: 0 0 10px; color: var(--blue-600); font-size: 0.75rem; font-weight: 850; letter-spacing: 0.13em; text-transform: uppercase; }
+
+/* Dark rental card category label: brighter blue keeps the label readable against navy. */
+/* Dark rental card category label: brighter blue keeps the label readable against navy. */
+.rental-card-dark .card-kicker { color: #93c5fd; }
+
+/* Rental card heading: sized for strong hierarchy without competing with section headings. */
+/* Rental card heading: sized for strong hierarchy without competing with section headings. */
+.rental-card h3 { margin-bottom: 15px; font-size: clamp(1.7rem, 2.5vw, 2.4rem); }
+
+/* Rental card supporting text: muted copy remains comfortable for longer sentences. */
+/* Rental card supporting text: muted copy remains comfortable for longer sentences. */
+.rental-card p:not(.card-kicker) { margin: 0; color: var(--slate-600); }
+
+/* Dark rental card supporting text: lighter slate maintains adequate contrast on navy. */
+/* Dark rental card supporting text: lighter slate maintains adequate contrast on navy. */
+.rental-card-dark p:not(.card-kicker) { color: #cbd5e1; }
+
+/* Text link: useful for calls to action that should feel lighter than a full button. */
+/* Text link: useful for calls to action that should feel lighter than a full button. */
+.text-link { display: inline-flex; gap: 8px; margin-top: 25px; color: var(--blue-600); font-weight: 850; }
+
+/* Dark card text link: light blue keeps it distinct from regular white copy. */
+/* Dark card text link: light blue keeps it distinct from regular white copy. */
+.rental-card-dark .text-link { color: #bfdbfe; }
+
+/* Text link hover motion: arrow and label move together for a subtle cue. */
+/* Text link hover motion: arrow and label move together for a subtle cue. */
+.text-link:hover { transform: translateX(2px); }
+
+/* Reviews section background: dark palette gives testimonials a dedicated, premium-looking block. */
+/* Reviews section background: dark palette gives testimonials a dedicated, premium-looking block. */
+.reviews-section { background: var(--navy-950); color: var(--white); }
+
+/* Reviews header: heading and external Google Reviews action share one row on desktop. */
+/* Reviews header: heading and external Google Reviews action share one row on desktop. */
+.reviews-header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 42px; }
+
+/* Reviews header copy width: leaves room for the button and keeps the heading concise. */
+/* Reviews header copy width: leaves room for the button and keeps the heading concise. */
+.reviews-header > div { max-width: 760px; }
+
+/* Review cards grid: three columns on desktop, collapsing progressively on smaller screens. */
+/* Review cards grid: three columns on desktop, collapsing progressively on smaller screens. */
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+/* Review card shell: slightly lighter navy and thin border separate quotes without stark white cards. */
+/* Review card shell: slightly lighter navy and thin border separate quotes without stark white cards. */
+.review-card { margin: 0; padding: 28px; border: 1px solid rgba(255,255,255,0.10); border-radius: var(--radius-md); background: rgba(255,255,255,0.055); }
+
+/* Review label: a small blue tag identifies the source type without inventing a star rating. */
+/* Review label: a small blue tag identifies the source type without inventing a star rating. */
+.review-label { margin-bottom: 18px; color: #93c5fd; font-size: 0.72rem; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Review quote: slightly larger body text preserves readability on dark backgrounds. */
+/* Review quote: slightly larger body text preserves readability on dark backgrounds. */
+.review-card blockquote { margin: 0 0 22px; color: #e2e8f0; font-size: 0.98rem; line-height: 1.7; }
+
+/* Review author: stronger white text closes each quote clearly. */
+/* Review author: stronger white text closes each quote clearly. */
+.review-card figcaption { color: var(--white); font-size: 0.88rem; font-weight: 800; }
+
+/* Gallery grid: 12-column layout allows tall and wide photos without a heavy masonry library. */
+/* Gallery grid: 12-column layout allows tall and wide photos without a heavy masonry library. */
+.gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 150px; gap: 14px; }
+
+/* Gallery item shell: buttons are used so every image can be opened with keyboard or mouse. */
+/* Gallery item shell: buttons are used so every image can be opened with keyboard or mouse. */
+.gallery-item { grid-column: span 3; grid-row: span 2; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-sm); background: var(--slate-200); cursor: zoom-in; }
+
+/* Tall gallery item: adds visual variety to the first photo in the grid. */
+/* Tall gallery item: adds visual variety to the first photo in the grid. */
+.gallery-item.gallery-tall { grid-row: span 4; }
+
+/* Wide gallery item: breaks the rigid tile pattern with a larger landscape image. */
+/* Wide gallery item: breaks the rigid tile pattern with a larger landscape image. */
+.gallery-item.gallery-wide { grid-column: span 6; }
+
+/* Gallery images: every tile fills its assigned grid area without stretching. */
+/* Gallery images: every tile fills its assigned grid area without stretching. */
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 420ms ease, filter 420ms ease; }
+
+/* Gallery hover state: slight enlargement and contrast create a tactile photo-grid feel. */
+/* Gallery hover state: slight enlargement and contrast create a tactile photo-grid feel. */
+.gallery-item:hover img { transform: scale(1.035); filter: contrast(1.03); }
+
+/* Gallery more button row: centered action keeps the photo grid from feeling abruptly cut off. */
+/* Gallery more button row: centered action keeps the photo grid from feeling abruptly cut off. */
+.gallery-more { display: flex; justify-content: center; margin-top: 30px; }
+
+/* Extra gallery grid: same geometry as the first grid with a small top gap when expanded. */
+/* Extra gallery grid: same geometry as the first grid with a small top gap when expanded. */
+.gallery-extra { margin-top: 14px; }
+/* Set layout or appearance for .gallery-extra[hidden]. */
+.gallery-extra[hidden] { display: none; }
+
+/* Contact section background: blue-tinted navy gives the final CTA its own identity. */
+/* Contact section background: blue-tinted navy gives the final CTA its own identity. */
+.contact-section { padding: 100px 0; background: linear-gradient(135deg, #0f172a 0%, #102c57 100%); color: var(--white); }
+
+/* Contact layout: copy and details card split into two columns on desktop. */
+/* Contact layout: copy and details card split into two columns on desktop. */
+.contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 64px; }
+
+/* Contact paragraph: softer white keeps the heading as the primary visual anchor. */
+/* Contact paragraph: softer white keeps the heading as the primary visual anchor. */
+.contact-copy > p:last-of-type { max-width: 56ch; margin: 0; color: #cbd5e1; font-size: 1.06rem; }
+
+/* Contact buttons: sit beside each other and wrap naturally on smaller widths. */
+/* Contact buttons: sit beside each other and wrap naturally on smaller widths. */
+.contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
+/* Set layout or appearance for .question-form. */
+.question-form { display: grid; gap: 8px; max-width: 36rem; margin-top: 28px; scroll-margin-top: 96px; }
+/* Set layout or appearance for .question-form label. */
+.question-form label { font-weight: 700; }
+/* Set layout or appearance for .question-form input, .question-form textarea. */
+.question-form input, .question-form textarea { width: 100%; margin-bottom: 8px; padding: 12px; border: 1px solid var(--slate-200); border-radius: 8px; color: var(--navy-900); background: var(--white); font: inherit; }
+/* Set layout or appearance for .question-form textarea. */
+.question-form textarea { resize: vertical; }
+/* Set layout or appearance for .question-form button. */
+.question-form button { justify-self: start; }
+/* Set layout or appearance for .question-form button:disabled. */
+.question-form button:disabled { opacity: 0.65; cursor: default; }
+/* Set layout or appearance for .question-form button[aria-busy="true"]. */
+.question-form button[aria-busy="true"] { cursor: wait; }
+/* Set layout or appearance for .question-status. */
+.question-status { margin: 0; color: #e2e8f0; }
+
+/* Contact details card: a translucent panel feels integrated with the dark section instead of pasted on. */
+/* Contact details card: a translucent panel feels integrated with the dark section instead of pasted on. */
+.contact-card { display: grid; gap: 11px; padding: 34px; border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius-md); background: rgba(255,255,255,0.08); font-style: normal; box-shadow: 0 24px 50px rgba(2,6,23,0.22); }
+
+/* Contact label: small uppercase text identifies the card before the address. */
+/* Contact label: small uppercase text identifies the card before the address. */
+.contact-label { color: #93c5fd; font-size: 0.72rem; font-weight: 850; letter-spacing: 0.13em; text-transform: uppercase; }
+
+/* Contact address: slightly larger and brighter than phone/email links. */
+/* Contact address: slightly larger and brighter than phone/email links. */
+.contact-card strong { margin: 6px 0 4px; font-size: 1.15rem; line-height: 1.55; }
+
+/* Contact links: high-contrast but not underlined until hovered. */
+/* Contact links: high-contrast but not underlined until hovered. */
+.contact-card a { color: #e2e8f0; }
+
+/* Contact link hover state: white underline signals the direct action. */
+/* Contact link hover state: white underline signals the direct action. */
+.contact-card a:hover { color: var(--white); text-decoration: underline; }
+
+/* Footer shell: dark base keeps the bottom of the site visually grounded. */
+/* Footer shell: dark base keeps the bottom of the site visually grounded. */
+.site-footer { padding: 58px 0 22px; background: #050b14; color: var(--white); }
+
+/* Footer top layout: brand information and navigation links occupy opposite sides. */
+/* Footer top layout: brand information and navigation links occupy opposite sides. */
+.footer-grid { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
+
+/* Footer brand location text: slightly brighter than the default header subtitle for dark-background readability. */
+/* Footer brand location text: slightly brighter than the default header subtitle for dark-background readability. */
+.footer-brand .brand-copy small { color: #94a3b8; }
+
+/* Footer note: short description under the logo gives context without repeating hero copy. */
+/* Footer note: short description under the logo gives context without repeating hero copy. */
+.footer-note { max-width: 430px; margin: 18px 0 0; color: #94a3b8; font-size: 0.9rem; }
+
+/* Footer link group: horizontally arranged on desktop for fast scanning. */
+/* Footer link group: horizontally arranged on desktop for fast scanning. */
+.footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 22px; color: #cbd5e1; font-size: 0.88rem; font-weight: 700; }
+
+/* Footer link hover state: white gives a clear but restrained interaction cue. */
+/* Footer link hover state: white gives a clear but restrained interaction cue. */
+.footer-links a:hover { color: var(--white); }
+
+/* Footer bottom row: copyright and build note are separated by a subtle top border. */
+/* Footer bottom row: copyright and build note are separated by a subtle top border. */
+.footer-bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.10); color: #64748b; font-size: 0.76rem; }
+
+/* Lightbox shell: native dialog covers the viewport with a dark translucent backdrop. */
+/* Lightbox shell: native dialog covers the viewport with a dark translucent backdrop. */
+.lightbox { width: min(92vw, 1100px); max-height: 90vh; padding: 0; border: 0; border-radius: 18px; background: transparent; overflow: visible; }
+
+/* Lightbox backdrop: darkens the rest of the page while a gallery image is open. */
+/* Lightbox backdrop: darkens the rest of the page while a gallery image is open. */
+.lightbox::backdrop { background: rgba(2, 6, 23, 0.88); backdrop-filter: blur(7px); }
+
+/* Lightbox image: large but constrained to the viewport so no page scroll is needed. */
+/* Lightbox image: large but constrained to the viewport so no page scroll is needed. */
+.lightbox img { width: 100%; max-height: 86vh; object-fit: contain; border-radius: 16px; box-shadow: var(--shadow-lg); }
+
+/* Lightbox close button: positioned outside the image corner for an unobstructed photo. */
+/* Lightbox close button: positioned outside the image corner for an unobstructed photo. */
+.lightbox-close { position: absolute; top: -16px; right: -16px; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.28); border-radius: 50%; background: var(--white); color: var(--navy-900); cursor: pointer; font-size: 1.6rem; line-height: 1; box-shadow: var(--shadow-sm); }
+
+/* Reveal animation starting state: JavaScript adds the visible class when content enters the viewport. */
+/* Reveal animation starting state: JavaScript adds the visible class when content enters the viewport. */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 620ms ease, transform 620ms ease; }
+
+/* Reveal animation delayed variant: used sparingly where two adjacent items should not animate simultaneously. */
+/* Reveal animation delayed variant: used sparingly where two adjacent items should not animate simultaneously. */
+.reveal-delay { transition-delay: 100ms; }
+
+/* Reveal animation visible state: returns content to its natural position. */
+/* Reveal animation visible state: returns content to its natural position. */
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Tablet breakpoint: navigation is simplified and three-column content reduces before phones. */
+/* Apply the next group of rules when (max-width: 1080px) matches. */
+@media (max-width: 1080px) {
+  /* Hide centered section links first so the important action buttons keep enough room. */
+  /* Hide centered section links first so the important action buttons keep enough room. */
+  .desktop-nav { display: none; }
+
+  /* Hero becomes slightly more balanced when horizontal space is limited. */
+  /* Hero becomes slightly more balanced when horizontal space is limited. */
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 38px; min-height: 620px; }
+
+  /* Reviews use two columns on tablets for comfortable text width. */
+  /* Reviews use two columns on tablets for comfortable text width. */
+  .review-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Gallery moves to a simpler 8-column system on medium screens. */
+  /* Gallery moves to a simpler 8-column system on medium screens. */
+  .gallery-grid { grid-template-columns: repeat(8, 1fr); }
+
+  /* Standard gallery tiles occupy half a row at tablet width. */
+  /* Standard gallery tiles occupy half a row at tablet width. */
+  .gallery-item { grid-column: span 4; }
+
+  /* Wide gallery tile spans the full tablet width. */
+  /* Wide gallery tile spans the full tablet width. */
+  .gallery-item.gallery-wide { grid-column: span 8; }
+/* Close the style rule above. */
+}
+
+/* Mobile navigation breakpoint: replaces desktop action buttons with the hamburger menu. */
+/* Apply the next group of rules when (max-width: 860px) matches. */
+@media (max-width: 860px) {
+  /* Desktop quick actions no longer fit cleanly at this width. */
+  /* Desktop quick actions no longer fit cleanly at this width. */
+  .desktop-actions { display: none; }
+
+  /* Mobile menu button becomes the right-aligned navigation control. */
+  /* Mobile menu button becomes the right-aligned navigation control. */
+  .menu-button { display: block; margin-left: auto; }
+
+  /* Hero switches to one column so the headline and photo both get full width. */
+  /* Hero switches to one column so the headline and photo both get full width. */
+  .hero-grid { grid-template-columns: 1fr; min-height: auto; padding-top: 62px; padding-bottom: 84px; }
+
+  /* Hero copy is allowed to use the full container once the image is below it. */
+  /* Hero copy is allowed to use the full container once the image is below it. */
+  .hero-copy { max-width: none; }
+
+  /* Hero headline gets a wider line measure on mobile to avoid excessive height. */
+  /* Hero headline gets a wider line measure on mobile to avoid excessive height. */
+  .hero h1 { max-width: 12ch; }
+
+  /* Trust promises stack vertically for a more comfortable mobile reading pattern. */
+  /* Trust promises stack vertically for a more comfortable mobile reading pattern. */
+  .trust-grid { grid-template-columns: 1fr; }
+
+  /* Vertical trust items use bottom borders instead of right borders. */
+  /* Vertical trust items use bottom borders instead of right borders. */
+  .trust-item { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+
+  /* Last vertical trust item removes the final divider. */
+  /* Last vertical trust item removes the final divider. */
+  .trust-item:last-child { border-bottom: 0; }
+
+  /* Rental cards stack on tablet and phone sizes. */
+  /* Rental cards stack on tablet and phone sizes. */
+  .rental-grid { grid-template-columns: 1fr; }
+
+  /* Reviews header stacks so its button does not squeeze the heading. */
+  /* Reviews header stacks so its button does not squeeze the heading. */
+  .reviews-header { align-items: flex-start; flex-direction: column; }
+
+  /* Contact area becomes one column and puts the details card below the CTA. */
+  /* Contact area becomes one column and puts the details card below the CTA. */
+  .contact-grid { grid-template-columns: 1fr; gap: 38px; }
+
+  /* Footer top content stacks for easier scanning. */
+  /* Footer top content stacks for easier scanning. */
+  .footer-grid { flex-direction: column; }
+
+  /* Footer links align left once they sit beneath the brand. */
+  /* Footer links align left once they sit beneath the brand. */
+  .footer-links { justify-content: flex-start; }
+/* Close the style rule above. */
+}
+
+/* Phone breakpoint: reduces spacing and gallery complexity for narrow screens. */
+/* Apply the next group of rules when (max-width: 620px) matches. */
+@media (max-width: 620px) {
+  /* Container side padding becomes slightly tighter on small phones. */
+  /* Container side padding becomes slightly tighter on small phones. */
+  .container { width: min(calc(100% - 28px), var(--container)); }
+
+  /* Header height is reduced so the sticky bar consumes less vertical space. */
+  /* Header height is reduced so the sticky bar consumes less vertical space. */
+  .nav-wrap { min-height: 70px; }
+
+  /* Brand icon is smaller to leave room for the mobile menu button. */
+  /* Brand icon is smaller to leave room for the mobile menu button. */
+  .brand-mark { width: 38px; height: 38px; border-radius: 10px; }
+
+  /* Brand name remains readable without overpowering a narrow header. */
+  /* Brand name remains readable without overpowering a narrow header. */
+  .brand-copy strong { font-size: 0.94rem; }
+
+  /* Brand location is hidden on the smallest screens because the city is shown throughout the page. */
+  /* Brand location is hidden on the smallest screens because the city is shown throughout the page. */
+  .brand-copy small { display: none; }
+
+  /* Hero spacing is tightened while preserving visual separation. */
+  /* Hero spacing is tightened while preserving visual separation. */
+  .hero-grid { gap: 44px; padding-top: 50px; padding-bottom: 70px; }
+
+  /* Hero headline uses a phone-friendly size floor. */
+  /* Hero headline uses a phone-friendly size floor. */
+  .hero h1 { font-size: clamp(2.75rem, 14vw, 4.25rem); }
+
+  /* Hero buttons span the available width for easier tapping. */
+  /* Hero buttons span the available width for easier tapping. */
+  .hero-actions .button { width: 100%; }
+
+  /* Hero contact links stack so email never overflows the viewport. */
+  /* Hero contact links stack so email never overflows the viewport. */
+  .hero-contact { display: grid; gap: 10px; }
+
+  /* Use a taller crop on phones to keep more of the room in view. */
+  /* Use a taller crop on phones to keep more of the room in view. */
+  .hero-media > img { aspect-ratio: 1 / 0.88; }
+
+  /* Section spacing is reduced on mobile while keeping a premium amount of whitespace. */
+  /* Section spacing is reduced on mobile while keeping a premium amount of whitespace. */
+  .section { padding: 82px 0; }
+
+  /* Rental card body padding is reduced so copy does not feel cramped by the viewport edges. */
+  /* Rental card body padding is reduced so copy does not feel cramped by the viewport edges. */
+  .rental-card-body { padding: 28px 25px 31px; }
+
+  /* Reviews switch to one column on phones. */
+  /* Reviews switch to one column on phones. */
+  .review-grid { grid-template-columns: 1fr; }
+
+  /* Gallery becomes a simple two-column grid with natural row height. */
+  /* Gallery becomes a simple two-column grid with natural row height. */
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 10px; }
+
+  /* All regular gallery tiles occupy one phone column. */
+  /* All regular gallery tiles occupy one phone column. */
+  .gallery-item { grid-column: span 1; grid-row: span 1; }
+
+  /* The first tall gallery image keeps extra height to preserve the editorial layout. */
+  /* The first tall gallery image keeps extra height to preserve the editorial layout. */
+  .gallery-item.gallery-tall { grid-row: span 2; }
+
+  /* Wide gallery item spans both phone columns. */
+  /* Wide gallery item spans both phone columns. */
+  .gallery-item.gallery-wide { grid-column: span 2; }
+
+  /* Contact buttons stack full width for thumb-friendly interaction. */
+  /* Contact buttons stack full width for thumb-friendly interaction. */
+  .contact-actions .button { width: 100%; }
+
+  /* Contact section uses the same reduced vertical rhythm as other mobile sections. */
+  /* Contact section uses the same reduced vertical rhythm as other mobile sections. */
+  .contact-section { padding: 82px 0; }
+
+  /* Footer copyright and build note stack instead of squeezing into one line. */
+  /* Footer copyright and build note stack instead of squeezing into one line. */
+  .footer-bottom { flex-direction: column; gap: 8px; }
+
+  /* Lightbox close button is moved inside the viewport on narrow screens. */
+  /* Lightbox close button is moved inside the viewport on narrow screens. */
+  .lightbox-close { top: 8px; right: 8px; }
+/* Close the style rule above. */
+}
+
+/* Reduced-motion preference: removes smooth scrolling and reveal transitions for users who request less motion. */
+/* Apply the next group of rules when (prefers-reduced-motion: reduce) matches. */
+@media (prefers-reduced-motion: reduce) {
+  /* Browser-level scrolling becomes immediate. */
+  /* Browser-level scrolling becomes immediate. */
+  html { scroll-behavior: auto; }
+
+  /* All custom animations and transitions are disabled. */
+  /* All custom animations and transitions are disabled. */
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+
+  /* Reveal elements remain visible even if JavaScript has not run yet. */
+  /* Reveal elements remain visible even if JavaScript has not run yet. */
+  .reveal { opacity: 1; transform: none; }
+/* Close the style rule above. */
+}

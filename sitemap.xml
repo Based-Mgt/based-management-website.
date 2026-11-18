@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Declare the XML version and text encoding before the sitemap. -->
+<!-- Single-page sitemap: add more URL entries here if the site grows into separate pages later. -->
+<!-- Start the sitemap URL list. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Start the site entry. -->
+  <url>
+    <!-- List the public homepage URL for search crawlers. -->
+    <loc>https://basedmgt.com/</loc>
+    <!-- Suggest how frequently the homepage changes. -->
+    <changefreq>monthly</changefreq>
+    <!-- Mark the homepage as the highest-priority sitemap entry. -->
+    <priority>1.0</priority>
+  <!-- End the site entry. -->
+  </url>
+<!-- End the sitemap URL list. -->
+</urlset>

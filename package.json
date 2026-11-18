@@ -1,0 +1,19 @@
+{
+  "name": "based-management-site",
+  "version": "1.0.0",
+  "description": "This is a clean, fully static rebuild of the Based Management homepage. It was created from the browser-saved copy of the existing site and its downloaded assets, but it does **not** depend on the old compiled Next.js files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

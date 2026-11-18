@@ -1,0 +1,11 @@
+# Cloudflare Pages security headers: safe defaults for a static company website.
+# Apply these headers to pages and assets across the site.
+/*
+  # Require browsers to respect the declared file type.
+  X-Content-Type-Options: nosniff
+  # Limit how much referrer information is sent to other sites.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Allow only this site to embed its pages in a frame.
+  X-Frame-Options: SAMEORIGIN
+  # Disable camera, microphone, and location requests on the site.
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

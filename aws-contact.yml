@@ -1,0 +1,262 @@
+# Select the CloudFormation template format version.
+AWSTemplateFormatVersion: '2010-09-09'
+# Describe what this stack deploys.
+Description: Based Management staging inquiry form with office-only SES delivery
+
+# List the AWS resources to create.
+Resources:
+  # Define the Lambda role used to send office email.
+  MailRole:
+    # Select the AWS resource type shown here.
+    Type: AWS::IAM::Role
+    # Set the options for the resource above.
+    Properties:
+      # Allow the Lambda service to use the mail role.
+      AssumeRolePolicyDocument:
+        # Use this version of the IAM policy language.
+        Version: '2012-10-17'
+        # List the actions and conditions in the policy.
+        Statement:
+          # Allow the action under the conditions below.
+          - Effect: Allow
+            # Identify the AWS service allowed to use this resource.
+            Principal: { Service: lambda.amazonaws.com }
+            # Grant the single AWS action named here.
+            Action: sts:AssumeRole
+      # Attach the permissions needed by the mail function.
+      Policies:
+        # Give the office-only send policy a descriptive name.
+        - PolicyName: SendOnlyToOffice
+          # Define the actions this role can perform.
+          PolicyDocument:
+            # Use this version of the IAM policy language.
+            Version: '2012-10-17'
+            # List the actions and conditions in the policy.
+            Statement:
+              # Allow the action under the conditions below.
+              - Effect: Allow
+                # Grant the single AWS action named here.
+                Action: ses:SendEmail
+                # Limit sending to the verified office email identity in this account.
+                Resource: !Sub arn:${AWS::Partition}:ses:${AWS::Region}:${AWS::AccountId}:identity/office@basedmgt.com
+                # Apply an additional limit to the permission.
+                Condition:
+                  # Require every recipient to match the permitted address.
+                  ForAllValues:StringEquals:
+                    # Restrict every recipient to the office inbox.
+                    ses:Recipients: office@basedmgt.com
+
+  # Define the function that checks and emails form submissions.
+  ContactFunction:
+    # Select the AWS resource type shown here.
+    Type: AWS::Lambda::Function
+    # Set the options for the resource above.
+    Properties:
+      # Run the function in the specified Node.js environment.
+      Runtime: nodejs22.x
+      # Tell Lambda where to find the function entry point.
+      Handler: index.handler
+      # Give the function only the mail permissions defined above.
+      Role: !GetAtt MailRole.Arn
+      # Stop running the function after 10 seconds.
+      Timeout: 10
+      # Provide the function source code as part of this template.
+      Code:
+        # Package the indented JavaScript as the Lambda entry file.
+        ZipFile: |
+          // Load SESClient, SendEmailCommand from @aws-sdk/client-ses.
+          const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+          // Create a mail client that makes one send attempt per request.
+          const ses = new SESClient({ maxAttempts: 1 });
+          // Use the office inbox as the fixed recipient.
+          const office = 'office@basedmgt.com';
+          // Keep the approved staging website address for the origin check.
+          const origin = 'https://staging.d2mjg3wk4ht5pg.amplifyapp.com';
+          // Define the basic email address format accepted by this form.
+          const emailPattern = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i;
+
+          // Build the JSON response expected by API Gateway.
+          function response(statusCode, result) {
+            // Start assembling the response object.
+            return {
+              // Pass the HTTP status through to API Gateway.
+              statusCode,
+              // Set the headers needed for JSON or email delivery.
+              headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+              // Include the JSON payload in the outgoing request or response.
+              body: JSON.stringify(result),
+            // Close the current block or expression.
+            };
+          // Close the current block or expression.
+          }
+
+          // Start the server handler for a submitted question.
+          exports.handler = async (event) => {
+            // Use the API headers or an empty object if they are absent.
+            const headers = event.headers || {};
+            // Reject browser submissions that come from outside the expected site.
+            if (headers.origin !== origin) return response(403, { ok: false });
+            // Accept submissions with a JSON content type.
+            if (headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+              // Return HTTP 415 so the caller knows how the request ended.
+              return response(415, { ok: false });
+            // Close the current block or expression.
+            }
+
+            // Decode the API Gateway body if it arrived as base64.
+            const body = event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString('utf8') : event.body;
+            // Reject empty requests and requests larger than 24 KB.
+            if (!body || Buffer.byteLength(body) > 24 * 1024) return response(400, { ok: false });
+
+            // Set aside a variable for the parsed submission.
+            let inquiry;
+            // Start the operation that can fail and needs an error response.
+            try {
+              // Parse the submitted question into individual fields.
+              inquiry = JSON.parse(body);
+            // Handle an error from the operation above.
+            } catch {
+              // Return HTTP 400 so the caller knows how the request ended.
+              return response(400, { ok: false });
+            // Close the current block or expression.
+            }
+            // Reject an empty or non-object submission.
+            if (!inquiry || typeof inquiry !== 'object' || Array.isArray(inquiry)) return response(400, { ok: false });
+            // Silently discard submissions that filled the hidden spam-trap field.
+            if (inquiry.website) return response(200, { ok: true });
+
+            // Read the name field and trim whitespace when it is text.
+            const name = typeof inquiry.name === 'string' ? inquiry.name.trim() : '';
+            // Read the email field and trim whitespace when it is text.
+            const email = typeof inquiry.email === 'string' ? inquiry.email.trim() : '';
+            // Read the message field and trim whitespace when it is text.
+            const message = typeof inquiry.message === 'string' ? inquiry.message.trim() : '';
+            // Check the required fields, email format, and length limits.
+            if (!name || name.length > 100 || !emailPattern.test(email) || email.length > 254 || !message || message.length > 3000) {
+              // Return HTTP 400 so the caller knows how the request ended.
+              return response(400, { ok: false });
+            // Close the current block or expression.
+            }
+
+            // Start the operation that can fail and needs an error response.
+            try {
+              // Send one email through Amazon SES using the Lambda role.
+              const result = await ses.send(new SendEmailCommand({
+                // Send from the office mailbox verified in SES.
+                Source: office,
+                // Deliver only to the fixed office inbox.
+                Destination: { ToAddresses: [office] },
+                // Make Reply in the office inbox address the visitor.
+                ReplyToAddresses: [email],
+                // Provide the subject and plain-text message.
+                Message: {
+                  // Use a recognizable subject for incoming website questions.
+                  Subject: { Data: 'New question from the Based Management website', Charset: 'UTF-8' },
+                  // Put the visitor’s contact information and question into the email body.
+                  Body: { Text: { Data: `Name: ${name}\nEmail: ${email}\n\n${message}`, Charset: 'UTF-8' } },
+                // Close the current block or expression.
+                },
+              // Apply a timeout so a stalled email request can finish with an error.
+              }), { abortSignal: AbortSignal.timeout(7_000) });
+              // Report success after the mail provider returns a message identifier.
+              if (result.MessageId) return response(200, { ok: true });
+            // Handle an error from the operation above.
+            } catch {
+              // Return HTTP 502 so the caller knows how the request ended.
+              return response(502, { ok: false });
+            // Close the current block or expression.
+            }
+            // Return HTTP 502 so the caller knows how the request ended.
+            return response(502, { ok: false });
+          // Close the current block or expression.
+          };
+
+  # Create the public HTTP endpoint used by staging.
+  ContactApi:
+    # Select the AWS resource type shown here.
+    Type: AWS::ApiGatewayV2::Api
+    # Set the options for the resource above.
+    Properties:
+      # Set the API name shown in the AWS console.
+      Name: based-management-staging-contact
+      # Create an HTTP API.
+      ProtocolType: HTTP
+      # Define which websites may call this API from a browser.
+      CorsConfiguration:
+        # Allow browser requests from the Amplify staging domain.
+        AllowOrigins: [https://staging.d2mjg3wk4ht5pg.amplifyapp.com]
+        # Allow the browser to submit questions with POST.
+        AllowMethods: [POST]
+        # Allow the browser to send the JSON and retry headers.
+        AllowHeaders: [content-type, idempotency-key]
+
+  # Connect the HTTP API to the Lambda function.
+  ContactIntegration:
+    # Select the AWS resource type shown here.
+    Type: AWS::ApiGatewayV2::Integration
+    # Set the options for the resource above.
+    Properties:
+      # Attach this resource to the contact API above.
+      ApiId: !Ref ContactApi
+      # Forward API requests directly to the Lambda handler.
+      IntegrationType: AWS_PROXY
+      # Call the Lambda integration using POST.
+      IntegrationMethod: POST
+      # Build the AWS address for invoking this function.
+      IntegrationUri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ContactFunction.Arn}/invocations
+      # Use the HTTP API v2 event format expected by the handler.
+      PayloadFormatVersion: '2.0'
+
+  # Create the contact submission route.
+  ContactRoute:
+    # Select the AWS resource type shown here.
+    Type: AWS::ApiGatewayV2::Route
+    # Set the options for the resource above.
+    Properties:
+      # Attach this resource to the contact API above.
+      ApiId: !Ref ContactApi
+      # Match POST requests at the contact path.
+      RouteKey: POST /api/contact
+      # Send matched requests to the Lambda integration.
+      Target: !Sub integrations/${ContactIntegration}
+
+  # Create the API stage that serves submissions.
+  ContactStage:
+    # Select the AWS resource type shown here.
+    Type: AWS::ApiGatewayV2::Stage
+    # Set the options for the resource above.
+    Properties:
+      # Attach this resource to the contact API above.
+      ApiId: !Ref ContactApi
+      # Use the default stage so the URL needs no extra path prefix.
+      StageName: '$default'
+      # Publish matching API changes automatically.
+      AutoDeploy: true
+      # Limit traffic accepted by this API stage.
+      DefaultRouteSettings:
+        # Allow a small burst of up to two requests.
+        ThrottlingBurstLimit: 2
+        # Set a sustained request limit for this staging endpoint.
+        ThrottlingRateLimit: 0.2
+
+  # Allow the contact API to invoke the mail function.
+  InvokeContactFunction:
+    # Select the AWS resource type shown here.
+    Type: AWS::Lambda::Permission
+    # Set the options for the resource above.
+    Properties:
+      # Grant the single AWS action named here.
+      Action: lambda:InvokeFunction
+      # Identify the AWS service allowed to use this resource.
+      Principal: apigateway.amazonaws.com
+      # Apply the invocation permission to this Lambda function.
+      FunctionName: !Ref ContactFunction
+      # Scope invocation access to the POST contact route on this API.
+      SourceArn: !Sub arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${ContactApi}/*/POST/api/contact
+
+# Expose the values needed after deployment.
+Outputs:
+  # Name the URL used by the staging frontend.
+  ContactEndpoint:
+    # Return the complete API URL for the form action.
+    Value: !Sub '${ContactApi.ApiEndpoint}/api/contact'

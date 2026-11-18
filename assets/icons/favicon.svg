@@ -1,0 +1,11 @@
+<!-- A simple house monogram keeps the favicon recognizable without needing an image library. -->
+<!-- Start the vector graphic. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Based Management favicon">
+  <!-- Draw the rounded background behind the house icon. -->
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <!-- Draw part of the house icon from vector coordinates. -->
+  <path d="M13 31 32 15l19 16v19a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4V31Z" fill="#fff"/>
+  <!-- Draw part of the house icon from vector coordinates. -->
+  <path d="M26 54V37h12v17" fill="#2563eb"/>
+<!-- End the vector graphic. -->
+</svg>

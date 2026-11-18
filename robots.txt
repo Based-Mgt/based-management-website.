@@ -1,0 +1,9 @@
+# Standard public-site robots file: all normal search crawlers may index the website.
+# Apply the crawling rule to all search crawlers.
+User-agent: *
+# Allow crawling of the public homepage and assets.
+Allow: /
+
+# Update the domain below only if the live domain ever changes.
+# Tell crawlers where to find the sitemap.
+Sitemap: https://basedmgt.com/sitemap.xml

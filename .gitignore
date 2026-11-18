@@ -1,0 +1,16 @@
+# Operating-system and editor files should not be committed to the website repository.
+# Keep operating-system metadata out of Git.
+.DS_Store
+# Keep operating-system metadata out of Git.
+Thumbs.db
+# Keep personal editor settings out of Git.
+.vscode/
+# Keep local secrets and environment files out of Git.
+.dev.vars*
+# Keep local secrets and environment files out of Git.
+.env*
+
+# Reinstall JavaScript dependencies from package-lock.json instead of committing them.
+node_modules/
+# Rebuild the deployment files from source when needed.
+dist/

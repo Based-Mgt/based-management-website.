@@ -1,0 +1,638 @@
+<!-- Tell browsers to render this document as modern HTML. -->
+<!doctype html>
+<!-- Start the English-language document. -->
+<html lang="en">
+<!-- Start the browser and sharing settings. -->
+<head>
+  <!-- Core browser settings: these keep the page responsive and render text consistently. -->
+  <!-- Use UTF-8 so punctuation and symbols display correctly. -->
+  <meta charset="utf-8">
+  <!-- Set the viewport metadata used by browsers or link previews. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Search and sharing metadata: edit this copy if the company's positioning changes later. -->
+  <!-- Set the browser tab title for the Based Management homepage. -->
+  <title>Based Management | Pittsburgh Rentals & Property Management</title>
+  <!-- Set the description metadata used by browsers or link previews. -->
+  <meta name="description" content="Based Management helps Pittsburgh renters find long-term and short-term housing with responsive support and straightforward service.">
+  <!-- Set the theme-color metadata used by browsers or link previews. -->
+  <meta name="theme-color" content="#0f172a">
+  <!-- Set the og:title metadata used by browsers or link previews. -->
+  <meta property="og:title" content="Based Management | Pittsburgh Rentals & Property Management">
+  <!-- Set the og:description metadata used by browsers or link previews. -->
+  <meta property="og:description" content="Find a rental, explore short-term stays, or access your tenant portal with Based Management.">
+  <!-- Set the og:type metadata used by browsers or link previews. -->
+  <meta property="og:type" content="website">
+  <!-- Set the og:image metadata used by browsers or link previews. -->
+  <meta property="og:image" content="assets/images/hero-living-room.webp">
+
+  <!-- Local assets only: the site does not depend on a third-party font or UI framework. -->
+  <!-- Load the browser tab icon. -->
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Load the page stylesheet. -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Load the site interactions after the HTML has been parsed. -->
+  <script src="js/site.js" defer></script>
+<!-- End the browser and sharing settings. -->
+</head>
+<!-- Start the visible website. -->
+<body>
+  <!-- Accessibility shortcut: keyboard users can jump past the navigation directly into the page. -->
+  <!-- Link “Skip to main content” to #main-content. -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Site header: the three main actions match the original site, but are now regular editable links. -->
+  <!-- Start the site header styled by site-header. -->
+  <header class="site-header" data-header>
+    <!-- Start the layout group styled by container nav-wrap. -->
+    <div class="container nav-wrap">
+      <!-- Text logo: no external logo file is required, so branding stays crisp at every screen size. -->
+      <!-- Link “Based Management home” to #top. -->
+      <a class="brand" href="#top" aria-label="Based Management home">
+        <!-- Start the inline text group styled by brand-mark. -->
+        <span class="brand-mark" aria-hidden="true">
+          <!-- Start the vector graphic styled by brand-door. -->
+          <svg viewBox="0 0 32 32" focusable="false"><path d="M4 15.2 16 5l12 10.2v11.3a1.5 1.5 0 0 1-1.5 1.5h-21A1.5 1.5 0 0 1 4 26.5V15.2Z"/><path class="brand-door" d="M12.3 28v-9.2h7.4V28"/></svg>
+        <!-- End the inline text group. -->
+        </span>
+        <!-- Start the inline text group styled by brand-copy. -->
+        <span class="brand-copy">
+          <!-- Start the strong element. -->
+          <strong>Based Management</strong>
+          <!-- Start the small element. -->
+          <small>Pittsburgh, Pennsylvania</small>
+        <!-- End the inline text group. -->
+        </span>
+      <!-- End the a element. -->
+      </a>
+
+      <!-- Desktop navigation: these links open the same services the current website points to. -->
+      <!-- Start the navigation links styled by desktop-nav. -->
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <!-- Link “Rentals” to #rentals. -->
+        <a href="#rentals">Rentals</a>
+        <!-- Link “Reviews” to #reviews. -->
+        <a href="#reviews">Reviews</a>
+        <!-- Link “Gallery” to #gallery. -->
+        <a href="#gallery">Gallery</a>
+        <!-- Link “Contact” to #contact. -->
+        <a href="#contact">Contact</a>
+      <!-- End the navigation links. -->
+      </nav>
+
+      <!-- Desktop quick actions: kept visually prominent because they are the site's main conversion paths. -->
+      <!-- Start the layout group styled by nav-actions desktop-actions. -->
+      <div class="nav-actions desktop-actions">
+        <!-- Link “Listings” to https://www.zillow.com/profile/BASED-MGT-/. -->
+        <a class="button button-ghost" href="https://www.zillow.com/profile/BASED-MGT-/" target="_blank" rel="noopener noreferrer">Listings</a>
+        <!-- Link “Airbnb” to https://www.airbnb.com/. -->
+        <a class="button button-ghost" href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Airbnb</a>
+        <!-- Link “Tenant Portal” to https://basedmanagement.managebuilding.com/Resident/public/home. -->
+        <a class="button button-primary" href="https://basedmanagement.managebuilding.com/Resident/public/home" target="_blank" rel="noopener noreferrer">Tenant Portal</a>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Mobile menu button: JavaScript only handles opening and closing this compact navigation. -->
+      <!-- Provide the “Open menu” button visitors can press. -->
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+        <!-- Start the inline text group. -->
+        <span></span><span></span><span></span>
+      <!-- End the button element. -->
+      </button>
+    <!-- End the layout group. -->
+    </div>
+
+    <!-- Mobile navigation panel: it contains the same links as desktop so nothing is hidden on small screens. -->
+    <!-- Start the layout group named mobile-menu. -->
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+      <!-- Start the layout group styled by container mobile-menu-inner. -->
+      <div class="container mobile-menu-inner">
+        <!-- Link “Rentals” to #rentals. -->
+        <a href="#rentals">Rentals</a>
+        <!-- Link “Reviews” to #reviews. -->
+        <a href="#reviews">Reviews</a>
+        <!-- Link “Gallery” to #gallery. -->
+        <a href="#gallery">Gallery</a>
+        <!-- Link “Contact” to #contact. -->
+        <a href="#contact">Contact</a>
+        <!-- Start the layout group styled by mobile-action-grid. -->
+        <div class="mobile-action-grid">
+          <!-- Link “View Listings” to https://www.zillow.com/profile/BASED-MGT-/. -->
+          <a class="button button-ghost" href="https://www.zillow.com/profile/BASED-MGT-/" target="_blank" rel="noopener noreferrer">View Listings</a>
+          <!-- Link “Short-Term Stays” to https://www.airbnb.com/. -->
+          <a class="button button-ghost" href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Short-Term Stays</a>
+          <!-- Link “Tenant Portal” to https://basedmanagement.managebuilding.com/Resident/public/home. -->
+          <a class="button button-primary" href="https://basedmanagement.managebuilding.com/Resident/public/home" target="_blank" rel="noopener noreferrer">Tenant Portal</a>
+        <!-- End the layout group. -->
+        </div>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the layout group. -->
+    </div>
+  <!-- End the site header. -->
+  </header>
+
+  <!-- Start the main page content named main-content. -->
+  <main id="main-content">
+    <!-- Hero section: a clearer value proposition replaces the old text-heavy welcome block. -->
+    <!-- Start the page section named top. -->
+    <section class="hero" id="top">
+      <!-- Start the layout group styled by container hero-grid. -->
+      <div class="container hero-grid">
+        <!-- Start the layout group styled by hero-copy reveal. -->
+        <div class="hero-copy reveal">
+          <!-- Eyebrow label: this quickly tells visitors the geographic focus before they read the headline. -->
+          <!-- Show this copy to visitors in the current section. -->
+          <p class="eyebrow">Pittsburgh rentals, managed with care</p>
+          <!-- Display “A simpler way to find your next place.” as a page heading. -->
+          <h1>A simpler way to find your next place.</h1>
+          <!-- Show this copy to visitors in the current section. -->
+          <p class="hero-lede">Based Management helps renters find comfortable homes with straightforward communication, responsive support, and an easier move-in experience.</p>
+
+          <!-- Hero calls to action: listings comes first for prospects, while current residents still have portal access. -->
+          <!-- Start the layout group styled by hero-actions. -->
+          <div class="hero-actions">
+            <!-- Link “Browse Available Rentals” to https://www.zillow.com/profile/BASED-MGT-/. -->
+            <a class="button button-primary button-large" href="https://www.zillow.com/profile/BASED-MGT-/" target="_blank" rel="noopener noreferrer">Browse Available Rentals</a>
+            <!-- Link “Apply for a Rental” to https://basedmanagement.managebuilding.com/Resident/rental-application/new/apply. -->
+            <a class="button button-outline button-large" href="https://basedmanagement.managebuilding.com/Resident/rental-application/new/apply" target="_blank" rel="noopener noreferrer">Apply for a Rental</a>
+            <!-- Link “Resident Portal” to https://basedmanagement.managebuilding.com/Resident/public/home. -->
+            <a class="button button-outline button-large" href="https://basedmanagement.managebuilding.com/Resident/public/home" target="_blank" rel="noopener noreferrer">Resident Portal</a>
+            <!-- Link “Ask a Question” to #ask-a-question. -->
+            <a class="button button-outline button-large" href="#ask-a-question">Ask a Question</a>
+          <!-- End the layout group. -->
+          </div>
+
+          <!-- Direct contact row: phone and email stay visible without forcing visitors through a form. -->
+          <!-- Start the layout group styled by hero-contact. -->
+          <div class="hero-contact" aria-label="Contact options">
+            <!-- Link “☎ (412) 500-9027” to the phone number +14125009027. -->
+            <a href="tel:+14125009027"><span aria-hidden="true">☎</span> (412) 500-9027</a>
+            <!-- Link “✉ office@basedmgt.com” to the email address office@basedmgt.com. -->
+            <a href="mailto:office@basedmgt.com"><span aria-hidden="true">✉</span> office@basedmgt.com</a>
+          <!-- End the layout group. -->
+          </div>
+        <!-- End the layout group. -->
+        </div>
+
+        <!-- Hero image: a retouched photo from the Based Management property gallery. -->
+        <!-- Start the layout group styled by hero-media reveal reveal-delay. -->
+        <div class="hero-media reveal reveal-delay">
+          <!-- Display the image described as “Window-lit living room with a green sofa in a Based Management rental”. -->
+          <img src="assets/images/hero-living-room.webp" alt="Window-lit living room with a green sofa in a Based Management rental" width="1200" height="1200" fetchpriority="high">
+        <!-- End the layout group. -->
+        </div>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+
+    <!-- Trust strip: short service promises replace an unsupported numeric "years of experience" claim. -->
+    <!-- Start the page section styled by trust-strip. -->
+    <section class="trust-strip" aria-label="Why renters choose Based Management">
+      <!-- Start the layout group styled by container trust-grid. -->
+      <div class="container trust-grid">
+        <!-- Start the individual content card styled by trust-item reveal. -->
+        <article class="trust-item reveal">
+          <!-- Display this short label or piece of inline text. -->
+          <span class="trust-number">01</span>
+          <!-- Start the layout group. -->
+          <div><h2>Responsive support</h2><p>Clear communication when questions or maintenance needs come up.</p></div>
+        <!-- End the individual content card. -->
+        </article>
+        <!-- Start the individual content card styled by trust-item reveal. -->
+        <article class="trust-item reveal">
+          <!-- Display this short label or piece of inline text. -->
+          <span class="trust-number">02</span>
+          <!-- Start the layout group. -->
+          <div><h2>Straightforward renting</h2><p>Simple online access for listings, resident resources, and rent-related needs.</p></div>
+        <!-- End the individual content card. -->
+        </article>
+        <!-- Start the individual content card styled by trust-item reveal. -->
+        <article class="trust-item reveal">
+          <!-- Display this short label or piece of inline text. -->
+          <span class="trust-number">03</span>
+          <!-- Start the layout group. -->
+          <div><h2>Pittsburgh focused</h2><p>Housing options for Pittsburgh residents and visitors across the area.</p></div>
+        <!-- End the individual content card. -->
+        </article>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+
+    <!-- Rentals section: separates long-term and short-term choices so visitors know where to go next. -->
+    <!-- Start the page section named rentals. -->
+    <section class="section section-light" id="rentals">
+      <!-- Start the layout group styled by container section-heading reveal. -->
+      <div class="container section-heading reveal">
+        <!-- Show this copy to visitors in the current section. -->
+        <p class="eyebrow">Find the right fit</p>
+        <!-- Display “Rental options for the way you need to stay.” as a page heading. -->
+        <h2>Rental options for the way you need to stay.</h2>
+        <!-- Show this copy to visitors in the current section. -->
+        <p>Whether you are looking for a longer-term home or a shorter visit to Pittsburgh, start with the option that matches your plans.</p>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Start the layout group styled by container rental-grid. -->
+      <div class="container rental-grid">
+        <!-- Long-term rental card: the Zillow profile is the original site's destination for available listings. -->
+        <!-- Start the individual content card styled by rental-card reveal. -->
+        <article class="rental-card reveal">
+          <!-- Start the layout group styled by rental-card-image. -->
+          <div class="rental-card-image">
+            <!-- Display the image described as “Living room with a cream sectional and simulated daylight through the window”. -->
+            <img src="assets/images/living-room-daytime.webp" alt="Living room with a cream sectional and simulated daylight through the window" loading="lazy" width="1440" height="810">
+          <!-- End the layout group. -->
+          </div>
+          <!-- Start the layout group styled by rental-card-body. -->
+          <div class="rental-card-body">
+            <!-- Show this copy to visitors in the current section. -->
+            <p class="card-kicker">Long-term rentals</p>
+            <!-- Display “Looking for your next home?” as a page heading. -->
+            <h3>Looking for your next home?</h3>
+            <!-- Show this copy to visitors in the current section. -->
+            <p>Browse current Based Management listings and find a property that fits your location, layout, and move-in needs.</p>
+            <!-- Link “See available listings →” to https://www.zillow.com/profile/BASED-MGT-/. -->
+            <a class="text-link" href="https://www.zillow.com/profile/BASED-MGT-/" target="_blank" rel="noopener noreferrer">See available listings <span aria-hidden="true">→</span></a>
+          <!-- End the layout group. -->
+          </div>
+        <!-- End the individual content card. -->
+        </article>
+
+        <!-- Short-term rental card: the original site specifically promotes Airbnb and shorter Pittsburgh stays. -->
+        <!-- Start the individual content card styled by rental-card rental-card-dark reveal reveal-delay. -->
+        <article class="rental-card rental-card-dark reveal reveal-delay">
+          <!-- Start the layout group styled by rental-card-image. -->
+          <div class="rental-card-image">
+            <!-- Display the image described as “Daytime aerial illustration of downtown Pittsburgh and its yellow bridges”. -->
+            <img src="assets/images/pittsburgh-daytime-aerial.webp" alt="Daytime aerial illustration of downtown Pittsburgh and its yellow bridges" loading="lazy" width="1664" height="936">
+          <!-- End the layout group. -->
+          </div>
+          <!-- Start the layout group styled by rental-card-body. -->
+          <div class="rental-card-body">
+            <!-- Show this copy to visitors in the current section. -->
+            <p class="card-kicker">Short-term stays</p>
+            <!-- Display “In Pittsburgh for a shorter visit?” as a page heading. -->
+            <h3>In Pittsburgh for a shorter visit?</h3>
+            <!-- Show this copy to visitors in the current section. -->
+            <p>Explore a flexible short-term stay for business, travel, or time in the city, with the same focus on comfort and convenience.</p>
+            <!-- Link “Explore short-term stays →” to https://www.airbnb.com/. -->
+            <a class="text-link" href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Explore short-term stays <span aria-hidden="true">→</span></a>
+            <!-- Show this copy to visitors in the current section. -->
+            <p class="photo-credit">AI-generated illustration of Pittsburgh.</p>
+          <!-- End the layout group. -->
+          </div>
+        <!-- End the individual content card. -->
+        </article>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+
+    <!-- Reviews section: these are testimonials copied from the original site and presented in a more readable layout. -->
+    <!-- Start the page section named reviews. -->
+    <section class="section reviews-section" id="reviews">
+      <!-- Start the layout group styled by container reviews-header reveal. -->
+      <div class="container reviews-header reveal">
+        <!-- Start the layout group. -->
+        <div>
+          <!-- Show this copy to visitors in the current section. -->
+          <p class="eyebrow eyebrow-light">Resident feedback</p>
+          <!-- Display “What renters have said about their experience.” as a page heading. -->
+          <h2>What renters have said about their experience.</h2>
+        <!-- End the layout group. -->
+        </div>
+        <!-- Link “View Google Reviews” to https://www.google.com/search?q=Based+Management+Pittsburgh+reviews. -->
+        <a class="button button-light" href="https://www.google.com/search?q=Based+Management+Pittsburgh+reviews" target="_blank" rel="noopener noreferrer">View Google Reviews</a>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Start the layout group styled by container review-grid. -->
+      <div class="container review-grid">
+        <!-- Review 1: emphasizes maintenance response and understanding management. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“Been renting here for a year, overall great experience. Landlord is very understanding and maintenance is prompt.”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Sam Suica</figcaption>
+        <!-- End the review card. -->
+        </figure>
+
+        <!-- Review 2: highlights flexibility and responsiveness to resident needs. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“I am having a great experience as a tenant so far! My landlord and the property manager are flexible and very responsive to any needs or issues.”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Molly Guy</figcaption>
+        <!-- End the review card. -->
+        </figure>
+
+        <!-- Review 3: reinforces quick communication and a positive long-term rental experience. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“I have been a tenant for a year and a half now and really enjoyed the experience. Benny is friendly, flexible, and always responds quickly!”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Benny Jiang</figcaption>
+        <!-- End the review card. -->
+        </figure>
+
+        <!-- Review 4: focuses on repair response time and a direct recommendation. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“Lived in an apartment managed by them for over a year. Always had a great response time to our questions/repairs to the apartment. Highly recommend any property managed by them.”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Dawson Wolfe</figcaption>
+        <!-- End the review card. -->
+        </figure>
+
+        <!-- Review 5: calls out a concrete maintenance example from the original testimonials. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“Management here was very good. My fridge broke and they replaced it in less than a week. Very responsive to issues.”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Kate Spellman</figcaption>
+        <!-- End the review card. -->
+        </figure>
+
+        <!-- Review 6: speaks to a multi-year resident experience and maintenance follow-through. -->
+        <!-- Start the review card styled by review-card reveal. -->
+        <figure class="review-card reveal">
+          <!-- Start the layout group styled by review-label. -->
+          <div class="review-label">Resident review</div>
+          <!-- Display the renter’s quoted feedback. -->
+          <blockquote>“Been renting my apartment from Based Management for 3 years and I've renewed my lease once more. Ben (Landlord) and Dominic (house maintenance) are very responsive to issues raised and see through that they're taken care of.”</blockquote>
+          <!-- Identify the person credited for the review. -->
+          <figcaption>Hayden K</figcaption>
+        <!-- End the review card. -->
+        </figure>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+
+    <!-- Gallery section: a clean grid replaces the older carousel, making property photos easier to scan on desktop and mobile. -->
+    <!-- Start the page section named gallery. -->
+    <section class="section section-light" id="gallery">
+      <!-- Start the layout group styled by container section-heading reveal. -->
+      <div class="container section-heading reveal">
+        <!-- Show this copy to visitors in the current section. -->
+        <p class="eyebrow">A look inside</p>
+        <!-- Display “Homes that feel like home.” as a page heading. -->
+        <h2>Homes that feel like home.</h2>
+        <!-- Show this copy to visitors in the current section. -->
+        <p>Browse retouched photos of Based Management interiors and neighborhoods.</p>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Start the layout group styled by container gallery-grid. -->
+      <div class="container gallery-grid" data-gallery>
+        <!-- Gallery item 1: a renovated living area with a clean neutral finish. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item gallery-tall reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Renovated open living area”. -->
+          <img src="assets/images/living-room-renovated-retouched.webp" alt="Renovated open living area" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 2: a bright updated kitchen. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Updated white kitchen”. -->
+          <img src="assets/images/kitchen-modern-retouched.webp" alt="Updated white kitchen" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 3: exterior neighborhood view from the original gallery. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Residential properties and green space”. -->
+          <img src="assets/images/property-exteriors-retouched.webp" alt="Residential properties and green space" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 4: bathroom with contemporary finishes. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Renovated bathroom with contemporary tile”. -->
+          <img src="assets/images/bathroom-renovated-retouched.webp" alt="Renovated bathroom with contemporary tile" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 5: spacious living room shown in the original property gallery. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item gallery-wide reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Living room with a cream sectional and simulated daylight through the window”. -->
+          <img src="assets/images/living-room-daytime.webp" alt="Living room with a cream sectional and simulated daylight through the window" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 6: bright white kitchen with original cabinetry. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Bright white kitchen”. -->
+          <img src="assets/images/kitchen-white-retouched.webp" alt="Bright white kitchen" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 7: bedroom with hardwood flooring and natural light. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Bedroom with hardwood flooring”. -->
+          <img src="assets/images/bedroom-suite-retouched.webp" alt="Bedroom with hardwood flooring" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 8: convenient laundry setup included in the original gallery. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Stacked washer and dryer”. -->
+          <img src="assets/images/in-unit-laundry-retouched.webp" alt="Stacked washer and dryer" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Gallery expansion button: keeps the first screen polished while still preserving access to more original photos. -->
+      <!-- Start the layout group styled by container gallery-more reveal. -->
+      <div class="container gallery-more reveal">
+        <!-- Provide the “Show More Photos” button visitors can press. -->
+        <button class="button button-outline" type="button" aria-expanded="false" aria-controls="gallery-extra" data-gallery-more>Show More Photos</button>
+      <!-- End the layout group. -->
+      </div>
+
+      <!-- Extra gallery items: hidden by default and revealed by the button above. -->
+      <!-- Start the layout group named gallery-extra. -->
+      <div class="container gallery-grid gallery-extra" id="gallery-extra" data-gallery-extra hidden>
+        <!-- Gallery item 9: classic kitchen with darker cabinetry. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Classic kitchen with wood cabinets”. -->
+          <img src="assets/images/kitchen-classic-retouched.webp" alt="Classic kitchen with wood cabinets" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 10: clean bathroom with a modern vanity. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Clean bathroom with modern vanity”. -->
+          <img src="assets/images/bathroom-clean-retouched.webp" alt="Clean bathroom with modern vanity" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 11: finished lower-level living space. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Finished lower-level room”. -->
+          <img src="assets/images/finished-lower-level-retouched.webp" alt="Finished lower-level room" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+        <!-- Gallery item 12: spring courtyard and neighborhood landscaping. -->
+        <!-- Provide the button visitors can press. -->
+        <button class="gallery-item reveal" type="button" data-gallery-item>
+          <!-- Display the image described as “Residential courtyard in spring”. -->
+          <img src="assets/images/courtyard-spring-retouched.webp" alt="Residential courtyard in spring" loading="lazy">
+        <!-- End the button element. -->
+        </button>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+
+    <!-- Contact section: send an inquiry or reach the office directly. -->
+    <!-- Start the page section named contact. -->
+    <section class="contact-section" id="contact">
+      <!-- Start the layout group styled by container contact-grid. -->
+      <div class="container contact-grid">
+        <!-- Start the layout group styled by contact-copy reveal. -->
+        <div class="contact-copy reveal">
+          <!-- Show this copy to visitors in the current section. -->
+          <p class="eyebrow eyebrow-light">Get in touch</p>
+          <!-- Display “Questions about a rental?” as a page heading. -->
+          <h2>Questions about a rental?</h2>
+          <!-- Show this copy to visitors in the current section. -->
+          <p>Send us a question and we’ll reply by email.</p>
+          <!-- Start the layout group styled by contact-actions. -->
+          <div class="contact-actions">
+            <!-- Link “Call (412) 500-9027” to the phone number +14125009027. -->
+            <a class="button button-light button-large" href="tel:+14125009027">Call (412) 500-9027</a>
+            <!-- Link “Email Based Management” to the email address office@basedmgt.com. -->
+            <a class="button button-outline-light button-large" href="mailto:office@basedmgt.com">Email Based Management</a>
+          <!-- End the layout group. -->
+          </div>
+          <!-- Start the rental inquiry form named ask-a-question. -->
+          <form class="question-form" id="ask-a-question" tabindex="-1" action="/api/contact" method="post" aria-label="Ask a question" data-question-form>
+            <!-- Label the question-name field as “Name”. -->
+            <label for="question-name">Name</label>
+            <!-- Collect the name value and require it before sending. -->
+            <input id="question-name" name="name" autocomplete="name" maxlength="100" required>
+            <!-- Label the question-email field as “Email”. -->
+            <label for="question-email">Email</label>
+            <!-- Collect the email value and require it before sending. -->
+            <input id="question-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            <!-- Label the question-message field as “Your question”. -->
+            <label for="question-message">Your question</label>
+            <!-- Collect the message value and require it before sending. -->
+            <textarea id="question-message" name="message" rows="5" maxlength="3000" required></textarea>
+            <!-- Start the layout group named question-website. -->
+            <div hidden><label for="question-website">Website</label><input id="question-website" name="website" tabindex="-1" autocomplete="off"></div>
+            <!-- Provide the “Send Question” button visitors can press. -->
+            <button class="button button-light button-large" type="submit">Send Question</button>
+            <!-- Start the paragraph styled by question-status. -->
+            <p class="question-status" role="status" data-question-status></p>
+          <!-- End the rental inquiry form. -->
+          </form>
+          <!-- Start the fallback for browsers with JavaScript disabled. -->
+          <noscript><p>To send a question without JavaScript, email <a href="mailto:office@basedmgt.com">office@basedmgt.com</a>.</p></noscript>
+        <!-- End the layout group. -->
+        </div>
+
+        <!-- Contact details card: this keeps the current office information visible and easy to copy. -->
+        <!-- Start the office contact details styled by contact-card reveal reveal-delay. -->
+        <address class="contact-card reveal reveal-delay">
+          <!-- Display this short label or piece of inline text. -->
+          <span class="contact-label">Based Management</span>
+          <!-- Start the strong element. -->
+          <strong>6507 Wilkins Ave, Suite 212<br>Pittsburgh, PA 15217</strong>
+          <!-- Link “(412) 500-9027” to the phone number +14125009027. -->
+          <a href="tel:+14125009027">(412) 500-9027</a>
+          <!-- Link “office@basedmgt.com” to the email address office@basedmgt.com. -->
+          <a href="mailto:office@basedmgt.com">office@basedmgt.com</a>
+        <!-- End the office contact details. -->
+        </address>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the page section. -->
+    </section>
+  <!-- End the main page content. -->
+  </main>
+
+  <!-- Footer: short and intentionally simple so the page ends with useful links instead of visual clutter. -->
+  <!-- Start the site footer styled by site-footer. -->
+  <footer class="site-footer">
+    <!-- Start the layout group styled by container footer-grid. -->
+    <div class="container footer-grid">
+      <!-- Start the layout group. -->
+      <div>
+        <!-- Link “Based Management home” to #top. -->
+        <a class="brand footer-brand" href="#top" aria-label="Based Management home">
+          <!-- Start the inline text group styled by brand-mark. -->
+          <span class="brand-mark" aria-hidden="true">
+            <!-- Start the vector graphic styled by brand-door. -->
+            <svg viewBox="0 0 32 32" focusable="false"><path d="M4 15.2 16 5l12 10.2v11.3a1.5 1.5 0 0 1-1.5 1.5h-21A1.5 1.5 0 0 1 4 26.5V15.2Z"/><path class="brand-door" d="M12.3 28v-9.2h7.4V28"/></svg>
+          <!-- End the inline text group. -->
+          </span>
+          <!-- Display this short label or piece of inline text. -->
+          <span class="brand-copy"><strong>Based Management</strong><small>Pittsburgh, Pennsylvania</small></span>
+        <!-- End the a element. -->
+        </a>
+        <!-- Show this copy to visitors in the current section. -->
+        <p class="footer-note">Straightforward rentals, responsive support, and easier resident access.</p>
+      <!-- End the layout group. -->
+      </div>
+      <!-- Start the layout group styled by footer-links. -->
+      <div class="footer-links" aria-label="Footer links">
+        <!-- Link “Listings” to https://www.zillow.com/profile/BASED-MGT-/. -->
+        <a href="https://www.zillow.com/profile/BASED-MGT-/" target="_blank" rel="noopener noreferrer">Listings</a>
+        <!-- Link “Airbnb” to https://www.airbnb.com/. -->
+        <a href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Airbnb</a>
+        <!-- Link “Tenant Portal” to https://basedmanagement.managebuilding.com/Resident/public/home. -->
+        <a href="https://basedmanagement.managebuilding.com/Resident/public/home" target="_blank" rel="noopener noreferrer">Tenant Portal</a>
+        <!-- Link “Contact” to #contact. -->
+        <a href="#contact">Contact</a>
+      <!-- End the layout group. -->
+      </div>
+    <!-- End the layout group. -->
+    </div>
+    <!-- Start the layout group styled by container footer-bottom. -->
+    <div class="container footer-bottom">
+      <!-- The year is inserted by JavaScript so this line does not need a manual annual update. -->
+      <!-- Display this short label or piece of inline text. -->
+      <span>© <span data-year></span> Based Management. All rights reserved.</span>
+      <!-- Display this short label or piece of inline text. -->
+      <span>Built as a lightweight static site for easy editing and hosting.</span>
+    <!-- End the layout group. -->
+    </div>
+  <!-- End the site footer. -->
+  </footer>
+
+  <!-- Image lightbox: this native dialog gives the gallery a polished full-screen view without a plugin. -->
+  <!-- Start the enlarged gallery viewer styled by lightbox. -->
+  <dialog class="lightbox" data-lightbox aria-label="Property photo viewer">
+    <!-- Provide the “Close photo viewer” button visitors can press. -->
+    <button class="lightbox-close" type="button" aria-label="Close photo viewer" data-lightbox-close>×</button>
+    <!-- Provide the image slot that the gallery viewer fills when opened. -->
+    <img src="" alt="" data-lightbox-image>
+  <!-- End the enlarged gallery viewer. -->
+  </dialog>
+<!-- End the visible website. -->
+</body>
+<!-- End the English-language document. -->
+</html>
