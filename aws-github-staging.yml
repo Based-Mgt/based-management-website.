@@ -38,7 +38,7 @@ Resources:
             Condition:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
-                token.actions.githubusercontent.com:sub: 'repo:Based-Mgt/based-management-website.:ref:refs/heads/main'
+                token.actions.githubusercontent.com:sub: 'repo:Based-Mgt@300989647/based-management-website.@1463266339:ref:refs/heads/main'
       Policies:
         - PolicyName: DeployOnlyToAmplifyStaging
           PolicyDocument:
