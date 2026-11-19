@@ -104,41 +104,31 @@ revealItems.forEach((item) => {
 // Close the current block or expression.
 });
 
-// Gallery expansion controls: the first eight photos stay visible while extra images remain optional.
-// Find the gallery more button using the HTML hook [data-gallery-more].
-const galleryMoreButton = document.querySelector('[data-gallery-more]');
-// Find the extra gallery using the HTML hook [data-gallery-extra].
-const extraGallery = document.querySelector('[data-gallery-extra]');
+// Find the horizontal photo track and its arrow controls.
+const galleryTrack = document.querySelector('[data-gallery]');
+const galleryControls = document.querySelector('[data-gallery-controls]');
 
-// Gallery expansion click: toggles the second photo grid and updates the button label to match its state.
-// Run the gallery toggle when Show More or Show Fewer is pressed.
-galleryMoreButton?.addEventListener('click', () => {
-  // Skip the toggle when there is no extra photo grid.
-  if (!extraGallery) return;
-  // If the extra grid is hidden, the next click will show it.
-  const willShow = extraGallery.hidden;
-  // Apply the new visibility to the extra photo grid.
-  extraGallery.hidden = !willShow;
-  // Tell assistive technology whether the panel is open.
-  galleryMoreButton.setAttribute('aria-expanded', String(willShow));
-  // Change the button text to describe the next action.
-  galleryMoreButton.textContent = willShow ? 'Show Fewer Photos' : 'Show More Photos';
-
-  // Newly revealed photos get the same entrance treatment as content that was visible from the start.
-  // Start the reveal effects when the extra grid opens.
-  if (willShow) {
-    // Set up the reveal effect for each extra photo.
-    extraGallery.querySelectorAll('.reveal').forEach((item) => {
-      // Ask the observer to watch this element.
-      if (revealObserver) revealObserver.observe(item);
-      // Show the element by applying its visible style.
-      else item.classList.add('is-visible');
-    // Close the current block or expression.
+// Reveal the controls only when there are photos to browse.
+if (galleryTrack?.firstElementChild && galleryControls) {
+  // Wire each arrow to move by one photo and the gap beside it.
+  galleryControls.querySelectorAll('[data-gallery-step]').forEach((arrow) => {
+    // Wait for the visitor to press this arrow.
+    arrow.addEventListener('click', () => {
+      // Use the current photo width so the arrows work at every screen size.
+      const photoWidth = galleryTrack.firstElementChild.getBoundingClientRect().width;
+      // Read the same gap that CSS uses between photos.
+      const gap = Number.parseFloat(getComputedStyle(galleryTrack).columnGap);
+      // A negative direction goes to the previous photo and a positive direction goes to the next.
+      const direction = Number(arrow.dataset.galleryStep);
+      // Respect the visitor's reduced-motion preference when scrolling.
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+      // Let scroll snapping align the nearest photo after the move.
+      galleryTrack.scrollBy({ left: direction * (photoWidth + gap), behavior });
     });
-  // Close the current block or expression.
-  }
-// Close the current block or expression.
-});
+  });
+  // Show the arrows once their click handlers are ready.
+  galleryControls.hidden = false;
+}
 
 // Lightbox elements: the native dialog lets visitors inspect a gallery photo at a larger size.
 // Find the lightbox using the HTML hook [data-lightbox].

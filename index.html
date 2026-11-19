@@ -401,107 +401,104 @@
       <!-- End the layout group. -->
       </div>
 
-      <!-- Start the layout group styled by container gallery-grid. -->
-      <div class="container gallery-grid" data-gallery>
-        <!-- Gallery item 1: a renovated living area with a clean neutral finish. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item gallery-tall reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Renovated open living area”. -->
-          <img src="assets/images/living-room-renovated-retouched.webp" alt="Renovated open living area" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 2: a bright updated kitchen. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Updated white kitchen”. -->
-          <img src="assets/images/kitchen-modern-retouched.webp" alt="Updated white kitchen" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 3: exterior neighborhood view from the original gallery. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Residential properties and green space”. -->
-          <img src="assets/images/property-exteriors-retouched.webp" alt="Residential properties and green space" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 4: bathroom with contemporary finishes. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Renovated bathroom with contemporary tile”. -->
-          <img src="assets/images/bathroom-renovated-retouched.webp" alt="Renovated bathroom with contemporary tile" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 5: spacious living room shown in the original property gallery. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item gallery-wide reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Living room with a cream sectional and simulated daylight through the window”. -->
-          <img src="assets/images/living-room-daytime.webp" alt="Living room with a cream sectional and simulated daylight through the window" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 6: bright white kitchen with original cabinetry. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Bright white kitchen”. -->
-          <img src="assets/images/kitchen-white-retouched.webp" alt="Bright white kitchen" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 7: bedroom with hardwood flooring and natural light. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Bedroom with hardwood flooring”. -->
-          <img src="assets/images/bedroom-suite-retouched.webp" alt="Bedroom with hardwood flooring" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 8: convenient laundry setup included in the original gallery. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Stacked washer and dryer”. -->
-          <img src="assets/images/in-unit-laundry-retouched.webp" alt="Stacked washer and dryer" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-      <!-- End the layout group. -->
-      </div>
-
-      <!-- Gallery expansion button: keeps the first screen polished while still preserving access to more original photos. -->
-      <!-- Start the layout group styled by container gallery-more reveal. -->
-      <div class="container gallery-more reveal">
-        <!-- Provide the “Show More Photos” button visitors can press. -->
-        <button class="button button-outline" type="button" aria-expanded="false" aria-controls="gallery-extra" data-gallery-more>Show More Photos</button>
-      <!-- End the layout group. -->
-      </div>
-
-      <!-- Extra gallery items: hidden by default and revealed by the button above. -->
-      <!-- Start the layout group named gallery-extra. -->
-      <div class="container gallery-grid gallery-extra" id="gallery-extra" data-gallery-extra hidden>
-        <!-- Gallery item 9: classic kitchen with darker cabinetry. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Classic kitchen with wood cabinets”. -->
-          <img src="assets/images/kitchen-classic-retouched.webp" alt="Classic kitchen with wood cabinets" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 10: clean bathroom with a modern vanity. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Clean bathroom with modern vanity”. -->
-          <img src="assets/images/bathroom-clean-retouched.webp" alt="Clean bathroom with modern vanity" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 11: finished lower-level living space. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Finished lower-level room”. -->
-          <img src="assets/images/finished-lower-level-retouched.webp" alt="Finished lower-level room" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-        <!-- Gallery item 12: spring courtyard and neighborhood landscaping. -->
-        <!-- Provide the button visitors can press. -->
-        <button class="gallery-item reveal" type="button" data-gallery-item>
-          <!-- Display the image described as “Residential courtyard in spring”. -->
-          <img src="assets/images/courtyard-spring-retouched.webp" alt="Residential courtyard in spring" loading="lazy">
-        <!-- End the button element. -->
-        </button>
-      <!-- End the layout group. -->
+      <!-- Group navigation and all property photos into a scrollable carousel. -->
+      <div class="container" role="region" aria-label="Property photo carousel">
+        <!-- These buttons move the carousel one photo at a time. -->
+        <div class="gallery-controls" data-gallery-controls hidden>
+          <!-- Move toward earlier photos. -->
+          <button class="button button-outline" type="button" aria-controls="gallery-track" aria-label="Previous photo" data-gallery-step="-1">←</button>
+          <!-- Move toward later photos. -->
+          <button class="button button-outline" type="button" aria-controls="gallery-track" aria-label="Next photo" data-gallery-step="1">→</button>
+        </div>
+        <!-- Scroll or swipe through the photos. Each photo opens the enlarged viewer. -->
+        <div class="gallery-track" id="gallery-track" data-gallery>
+          <!-- Gallery item 1: a renovated living area with a clean neutral finish. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Renovated open living area”. -->
+            <img src="assets/images/living-room-renovated-retouched.webp" alt="Renovated open living area" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 2: a bright updated kitchen. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Updated white kitchen”. -->
+            <img src="assets/images/kitchen-modern-retouched.webp" alt="Updated white kitchen" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 3: exterior neighborhood view from the original gallery. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Residential properties and green space”. -->
+            <img src="assets/images/property-exteriors-retouched.webp" alt="Residential properties and green space" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 4: bathroom with contemporary finishes. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Renovated bathroom with contemporary tile”. -->
+            <img src="assets/images/bathroom-renovated-retouched.webp" alt="Renovated bathroom with contemporary tile" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 5: spacious living room shown in the original property gallery. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Living room with a cream sectional and simulated daylight through the window”. -->
+            <img src="assets/images/living-room-daytime.webp" alt="Living room with a cream sectional and simulated daylight through the window" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 6: bright white kitchen with original cabinetry. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Bright white kitchen”. -->
+            <img src="assets/images/kitchen-white-retouched.webp" alt="Bright white kitchen" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 7: bedroom with hardwood flooring and natural light. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Bedroom with hardwood flooring”. -->
+            <img src="assets/images/bedroom-suite-retouched.webp" alt="Bedroom with hardwood flooring" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 8: convenient laundry setup included in the original gallery. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Stacked washer and dryer”. -->
+            <img src="assets/images/in-unit-laundry-retouched.webp" alt="Stacked washer and dryer" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 9: classic kitchen with darker cabinetry. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Classic kitchen with wood cabinets”. -->
+            <img src="assets/images/kitchen-classic-retouched.webp" alt="Classic kitchen with wood cabinets" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 10: clean bathroom with a modern vanity. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Clean bathroom with modern vanity”. -->
+            <img src="assets/images/bathroom-clean-retouched.webp" alt="Clean bathroom with modern vanity" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 11: finished lower-level living space. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Finished lower-level room”. -->
+            <img src="assets/images/finished-lower-level-retouched.webp" alt="Finished lower-level room" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+          <!-- Gallery item 12: spring courtyard and neighborhood landscaping. -->
+          <!-- Provide the button visitors can press. -->
+          <button class="gallery-item" type="button" data-gallery-item>
+            <!-- Display the image described as “Residential courtyard in spring”. -->
+            <img src="assets/images/courtyard-spring-retouched.webp" alt="Residential courtyard in spring" loading="lazy">
+          <!-- End the button element. -->
+          </button>
+        <!-- End the horizontal photo track. -->
+        </div>
+      <!-- End the property carousel. -->
       </div>
     <!-- End the page section. -->
     </section>

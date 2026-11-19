@@ -560,39 +560,19 @@ h1, h2, h3 { margin-top: 0; line-height: 1.08; letter-spacing: -0.035em; }
 /* Review author: stronger white text closes each quote clearly. */
 .review-card figcaption { color: var(--white); font-size: 0.88rem; font-weight: 800; }
 
-/* Gallery grid: 12-column layout allows tall and wide photos without a heavy masonry library. */
-/* Gallery grid: 12-column layout allows tall and wide photos without a heavy masonry library. */
-.gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 150px; gap: 14px; }
+/* Place the carousel arrows above the photo track. */
+.gallery-controls { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 12px; }
+/* Hide the arrows until JavaScript can operate them. */
+.gallery-controls[hidden] { display: none; }
+/* Let visitors scroll or swipe through three photo tiles at desktop widths. */
+.gallery-track { --gallery-gap: 14px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 28px) / 3); gap: var(--gallery-gap); overflow-x: auto; padding: 4px 0 12px; scroll-snap-type: x mandatory; }
+/* Give each tile an even crop and snap it to the start of the track. */
+.gallery-item { display: block; aspect-ratio: 4 / 3; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-sm); background: var(--slate-200); cursor: zoom-in; scroll-snap-align: start; }
+/* Keep keyboard focus visible inside the scrolling track. */
+.gallery-item:focus-visible { outline-offset: -4px; }
+/* Fill each tile while keeping the full photo available in the viewer. */
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Gallery item shell: buttons are used so every image can be opened with keyboard or mouse. */
-/* Gallery item shell: buttons are used so every image can be opened with keyboard or mouse. */
-.gallery-item { grid-column: span 3; grid-row: span 2; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-sm); background: var(--slate-200); cursor: zoom-in; }
-
-/* Tall gallery item: adds visual variety to the first photo in the grid. */
-/* Tall gallery item: adds visual variety to the first photo in the grid. */
-.gallery-item.gallery-tall { grid-row: span 4; }
-
-/* Wide gallery item: breaks the rigid tile pattern with a larger landscape image. */
-/* Wide gallery item: breaks the rigid tile pattern with a larger landscape image. */
-.gallery-item.gallery-wide { grid-column: span 6; }
-
-/* Gallery images: every tile fills its assigned grid area without stretching. */
-/* Gallery images: every tile fills its assigned grid area without stretching. */
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 420ms ease, filter 420ms ease; }
-
-/* Gallery hover state: slight enlargement and contrast create a tactile photo-grid feel. */
-/* Gallery hover state: slight enlargement and contrast create a tactile photo-grid feel. */
-.gallery-item:hover img { transform: scale(1.035); filter: contrast(1.03); }
-
-/* Gallery more button row: centered action keeps the photo grid from feeling abruptly cut off. */
-/* Gallery more button row: centered action keeps the photo grid from feeling abruptly cut off. */
-.gallery-more { display: flex; justify-content: center; margin-top: 30px; }
-
-/* Extra gallery grid: same geometry as the first grid with a small top gap when expanded. */
-/* Extra gallery grid: same geometry as the first grid with a small top gap when expanded. */
-.gallery-extra { margin-top: 14px; }
-/* Set layout or appearance for .gallery-extra[hidden]. */
-.gallery-extra[hidden] { display: none; }
 
 /* Contact section background: blue-tinted navy gives the final CTA its own identity. */
 /* Contact section background: blue-tinted navy gives the final CTA its own identity. */
@@ -718,17 +698,8 @@ h1, h2, h3 { margin-top: 0; line-height: 1.08; letter-spacing: -0.035em; }
   /* Reviews use two columns on tablets for comfortable text width. */
   .review-grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* Gallery moves to a simpler 8-column system on medium screens. */
-  /* Gallery moves to a simpler 8-column system on medium screens. */
-  .gallery-grid { grid-template-columns: repeat(8, 1fr); }
-
-  /* Standard gallery tiles occupy half a row at tablet width. */
-  /* Standard gallery tiles occupy half a row at tablet width. */
-  .gallery-item { grid-column: span 4; }
-
-  /* Wide gallery tile spans the full tablet width. */
-  /* Wide gallery tile spans the full tablet width. */
-  .gallery-item.gallery-wide { grid-column: span 8; }
+  /* Show two carousel photos on tablets. */
+  .gallery-track { grid-auto-columns: calc((100% - 14px) / 2); }
 /* Close the style rule above. */
 }
 
@@ -844,21 +815,8 @@ h1, h2, h3 { margin-top: 0; line-height: 1.08; letter-spacing: -0.035em; }
   /* Reviews switch to one column on phones. */
   .review-grid { grid-template-columns: 1fr; }
 
-  /* Gallery becomes a simple two-column grid with natural row height. */
-  /* Gallery becomes a simple two-column grid with natural row height. */
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 10px; }
-
-  /* All regular gallery tiles occupy one phone column. */
-  /* All regular gallery tiles occupy one phone column. */
-  .gallery-item { grid-column: span 1; grid-row: span 1; }
-
-  /* The first tall gallery image keeps extra height to preserve the editorial layout. */
-  /* The first tall gallery image keeps extra height to preserve the editorial layout. */
-  .gallery-item.gallery-tall { grid-row: span 2; }
-
-  /* Wide gallery item spans both phone columns. */
-  /* Wide gallery item spans both phone columns. */
-  .gallery-item.gallery-wide { grid-column: span 2; }
+  /* Leave a glimpse of the next photo so phone visitors know they can swipe. */
+  .gallery-track { grid-auto-columns: 88%; }
 
   /* Contact buttons stack full width for thumb-friendly interaction. */
   /* Contact buttons stack full width for thumb-friendly interaction. */
