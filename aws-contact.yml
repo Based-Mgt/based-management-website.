@@ -70,8 +70,11 @@ Resources:
           const ses = new SESClient({ maxAttempts: 1 });
           // Use the office inbox as the fixed recipient.
           const office = 'office@basedmgt.com';
-          // Keep the approved staging website address for the origin check.
-          const origin = 'https://staging.d2mjg3wk4ht5pg.amplifyapp.com';
+          // Accept submissions from the Amplify staging URL and its preview hostname.
+          const allowedOrigins = new Set([
+            'https://staging.d2mjg3wk4ht5pg.amplifyapp.com',
+            'https://preview.basedmgt.com',
+          ]);
           // Define the basic email address format accepted by this form.
           const emailPattern = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i;
 
@@ -95,7 +98,7 @@ Resources:
             // Use the API headers or an empty object if they are absent.
             const headers = event.headers || {};
             // Reject browser submissions that come from outside the expected site.
-            if (headers.origin !== origin) return response(403, { ok: false });
+            if (!allowedOrigins.has(headers.origin)) return response(403, { ok: false });
             // Accept submissions with a JSON content type.
             if (headers['content-type']?.split(';')[0].trim() !== 'application/json') {
               // Return HTTP 415 so the caller knows how the request ended.
@@ -183,8 +186,10 @@ Resources:
       ProtocolType: HTTP
       # Define which websites may call this API from a browser.
       CorsConfiguration:
-        # Allow browser requests from the Amplify staging domain.
-        AllowOrigins: [https://staging.d2mjg3wk4ht5pg.amplifyapp.com]
+        # Allow browsers on both preview URLs to call the contact API.
+        AllowOrigins:
+          - https://staging.d2mjg3wk4ht5pg.amplifyapp.com
+          - https://preview.basedmgt.com
         # Allow the browser to submit questions with POST.
         AllowMethods: [POST]
         # Allow the browser to send the JSON and retry headers.
